@@ -66,8 +66,9 @@
 <div class="form-group">
   <label class="col-md-4 control-label" for="allfund">Apply filter?</label>
   <div class="col-md-8">
-    <button id="allfund" name="allfund" class="btn btn-default">View all funds</button>
-    <button id="submit" name="submit" class="btn btn-success">Filter funds</button>
+        <form action="{{url_for('index')}}">
+        <a id="allfund" class="btn btn-default" href="{{url_for('index')}}">View all funds</a></form>
+        <button id="submit" name="submit" class="btn btn-success">Filter funds</button>
   </div>
 </div>
 

@@ -53,17 +53,22 @@
             </button>
           </div>
           <div class="modal-body">
-              <h3>{{resource.name}}</h3>
-              <h5>Deadline: </h5> {{resource.deadline}}
-              <h5>Offered by: </h5> {{resource.source}}
-              <h5>Amount: </h5> {{resource.amount}}
-              <h5>Point of Contact: </h5> {{resource.point_of_contact}} <br>
-              {{resource.description}}
+            <h3>{{resource.name}}</h3>
+            {% if resource.deadline %}
+              <div {% if resource.deadline < datetime.datetime.today() %} class="text-danger font-weight-bold" {% else %} class="font-weight_bold" {% endif %}>Deadline: </div>
+             <div {% if resource.deadline < datetime.datetime.today() %} class="bg-warning" {% endif %}>{{resource.deadline}}</div> {% endif %}
+            {% if resource.source %}
+            <h5>Offered by: </h5> {{resource.source}} {% endif %}
+            {% if resource.amount %}
+            <h5>Amount: </h5> {{resource.amount}} {% endif %}
+            {% if resource.point_of_contact %}
+            <h5>Point of Contact: </h5> <a href="mail://{{resource.point_of_contact}}">{{resource.point_of_contact}}</a> {% endif %} <br>
+            {{resource.description}}
           </div>
           <div class="modal-footer">
               <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
               {% if resource.URL %}
-              <a href="{{resource.URL.geturl()}}" class="btn btn-primary">Website</a>
+              <a href="{{resource.URL.geturl()}}" class="btn btnre-primary">Website</a>
               {% else %}
               {% endif %}
           </div>
@@ -81,7 +86,11 @@
 
     <script>
             $(document).ready( function () {
-              var table = $('#resource-data').DataTable();
+              var table = $('#resource-data').DataTable({
+                  "language": {
+                      "search": "Search within table:"
+                  }}
+              );
             } );
     </script>
 
