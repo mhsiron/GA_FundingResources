@@ -1,0 +1,117 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h5> What kind of funding... </h5>
+
+<form class="form-horizontal" action="/applyfilter">
+<fieldset>
+
+<!-- Form Name -->
+<legend>Let's find an appropriate fund</legend>
+
+<!-- Select Basic -->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="f1">I am looking for funding for:</label>
+  <div class="col-md-5">
+    <select id="funding_for" name="funding_for" class="form-control">
+        <option value="None">Any...</option>
+        <option value="myself">Myself</option>
+        <option value="myresearch">My research</option>
+        <option value="myorg">My organization</option>
+    </select>
+  </div>
+</div>
+
+<!-- Select Basic -->
+<div class="form-group" id="q2-group" style="display: none">
+  <label class="col-md-4 control-label" for="myself_funding">I am looking for funding for myself from</label>
+  <div class="col-md-5">
+    <select id="myself_funding" name="myself_funding" class="form-control">
+        <option value="gen">Any...</option>
+        <option value="nat_fel">National fellowship</option>
+        <option value="int_fel">Internal fellowship</option>
+        <option value="fin_aid">Financial assistance</option>
+        <option value="work">Work</option>
+    </select>
+  </div>
+</div>
+
+<!-- Select Basic -->
+<div class="form-group" id="q3-group" style="display: none">
+  <label class="col-md-4 control-label" for="orgfund">I am looking for funding for my org for</label>
+  <div class="col-md-5">
+    <select id="orgfund" name="orgfund" class="form-control">
+      <option value="gen">Any</option>
+      <option value="prom">promotional</option>
+      <option value="event">an event</option>
+      <option value="proj">a project</option>
+    </select>
+  </div>
+</div>
+
+<!-- Select Basic -->
+<div class="form-group" id="q4-group" style="display: none">
+  <label class="col-md-4 control-label" for="res_fund">I am looking for funding for research in</label>
+  <div class="col-md-5">
+    <select id="res_fund" name="res_fund" class="form-control">
+        <option value="gen">Any</option>
+        <option value="STEM">STEM research</option>
+        <option value="arts">Arts</option>
+        <option value="cause">Specific cause</option>
+    </select>
+  </div>
+</div>
+
+<!-- Button (Double) -->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="allfund">Apply filter?</label>
+  <div class="col-md-8">
+    <button id="allfund" name="allfund" class="btn btn-default">View all funds</button>
+    <button id="submit" name="submit" class="btn btn-success">Filter funds</button>
+  </div>
+</div>
+
+</fieldset>
+</form>
+
+<script>
+    var ddl = document.getElementById("funding_for");
+    ddl.onchange=newCustomerType;
+    function newCustomerType()
+    {
+        var ddl = document.getElementById("funding_for");
+        var selectedValue = ddl.options[ddl.selectedIndex].value;
+
+
+        if (selectedValue == "myself")
+        {
+            document.getElementById("myself_funding").style.display = "block";
+            document.getElementById("orgfund").style.display = "none";
+            document.getElementById("res_fund").style.display = "none";
+            document.getElementById("q2-group").style.display = "block";
+            document.getElementById("q3-group").style.display = "none";
+            document.getElementById("q4-group").style.display = "none";
+        }
+        if (selectedValue == "myresearch")
+        {
+            document.getElementById("myself_funding").style.display = "none";
+            document.getElementById("orgfund").style.display = "none";
+            document.getElementById("res_fund").style.display = "block";
+            document.getElementById("q2-group").style.display = "none";
+            document.getElementById("q3-group").style.display = "none";
+            document.getElementById("q4-group").style.display = "block";
+        }
+        if (selectedValue == "myorg")
+        {
+            document.getElementById("myself_funding").style.display = "none";
+            document.getElementById("orgfund").style.display = "block";
+            document.getElementById("res_fund").style.display = "none";
+            document.getElementById("q2-group").style.display = "none";
+            document.getElementById("q3-group").style.display = "block";
+            document.getElementById("q4-group").style.display = "none";
+        }
+    }
+</script>
+
+
+{% endblock %}
