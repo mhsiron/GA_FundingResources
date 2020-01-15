@@ -24,6 +24,15 @@
         <li class="nav-item">
           <a class="nav-link" href="{{ url_for('welcome') }}">Apply Filter</a>
         </li>
+        {% if current_user.is_anonymous %}
+        <li class="nav-item">
+          <a class="nav-link" href="{{ url_for('login') }}">Login</a>
+        </li>
+        {% else %}
+        <li class="nav-item">
+          <a class="nav-link" href="{{ url_for('logout') }}">Logout</a>
+        </li>
+        {% endif %}
       </ul>
       <form class="form-inline my-2 my-lg-0" action="/keyword">
         <input class="form-control" type="search" name="value" id="value" placeholder="Search all records" aria-label="Search">
@@ -32,6 +41,16 @@
       </form>
     </div>
   </div>
+
+{% with messages = get_flashed_messages() %}
+        {% if messages %}
+        <ul>
+            {% for message in messages %}
+            <li>{{ message }}</li>
+            {% endfor %}
+        </ul>
+        {% endif %}
+{% endwith %}
 
 {% endblock %}
 

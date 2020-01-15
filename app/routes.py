@@ -1,19 +1,18 @@
-from flask import Flask, render_template, request, flash, redirect
+
+from flask import render_template, flash, redirect, url_for, request
+from flask_login import login_user, logout_user, current_user, login_required
+from werkzeug.urls import url_parse
+from app import app, db
+from app.form import LoginForm
 import pandas as pd
 import datetime
 from config import Config
-from data.form import LoginForm
 from flask_sqlalchemy import SQLAlchemy
+from app.structures import FundingResources
+from app.models import User
 
 
-
-app = Flask(__name__)
-app.config.from_object(Config)
-db = SQLAlchemy(app)
-
-
-
-### Load data:
+### Load init data:
 df = pd.read_csv("data/funding_opt.csv", names = ['name', 'source', 'URL', 'deadline', 'description',
        'criteria', 'ammount', 'restrictions', 'timeline', 'point_of_contact',
        'ga_contact', 'keywords','main_cat'])
@@ -21,8 +20,8 @@ df = df.fillna(False)
 df = df.replace('\n','', regex=True)
 
 ### Load data into data structure
-from data.models import FundingResource, FundingResources
 fd = FundingResources(df)
+
 
 @app.route('/')
 @app.route('/resources')
@@ -66,15 +65,31 @@ def applyfilter():
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
+    if current_user.is_authenticated:
+        return redirect(url_for('index'))
     form = LoginForm()
     if form.validate_on_submit():
-        flash('Login requested for user {}, remember_me={}'.format(
-            form.username.data, form.remember_me.data))
-        return redirect('/')
+        user = User.query.filter_by(username=form.username.data).first()
+        if user is None or not user.check_password(form.password.data):
+            print("u not in data")
+            flash('Invalid username or password')
+            return redirect(url_for('login'))
+        login_user(user, remember=form.remember_me.data)
+        return redirect(url_for('index'))
     return render_template('login.html', title='Sign In', form=form)
 
+@app.route('/logout')
+def logout():
+    logout_user()
+    return redirect(url_for('index'))
 
 
+db.create_all()
+#create sample admin user:
+u = User(username='admin', email='admin@example.com')
+u.set_password('mypassword')
 
+db.session.add(u)
+db.session.commit()
 
 app.run(debug=True)
