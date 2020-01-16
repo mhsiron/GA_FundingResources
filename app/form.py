@@ -24,8 +24,7 @@ class FundingResourceForm(FlaskForm):
     point_of_contact = StringField('Point of Contact', validators=[Email(), Optional()])
     ga_contact = StringField('GA Contact', validators=[Email(), Optional()])
     keywords = StringField('Keywords')
-    main_cat = SelectField('Type of Funding',
-                           choices=[(y.value,x) for x,y in zip(["Personal", "Research", "Organization"],Main_Categories)])
+    main_cat = SelectField('Type of Funding',choices=[(choice.name, choice.value) for choice in Main_Categories])
     submit = SubmitField('Add Resource')
 
 class FundingResourceUpdateForm(FundingResourceForm):

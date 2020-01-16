@@ -32,8 +32,19 @@ class User(UserMixin, db.Model):
 import enum
 class Main_Categories(enum.Enum):
     research = "research"
-    org =  "organization"
+    organization =  "organization"
     personal = "personal"
+
+    @classmethod
+    def choices(cls):
+        return [(choice.name, choice.value) for choice in cls]
+
+    @classmethod
+    def coerce(cls, item):
+        item = cls(item) \
+            if not isinstance(item, cls) \
+            else item  # a ValueError thrown if item is not defined in cls.
+        return item.value
 
 class FundingResources(db.Model):
     id = db.Column(db.Integer, primary_key= True)

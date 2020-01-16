@@ -120,8 +120,11 @@ def applyfilter():
 
 
     resources = FundingResources.query.filter(
-        FundingResources.main_cat.contains(funding_for)).filter(
-        FundingResources.keywords.contains(filter_criteria)).all()
+        FundingResources.main_cat.contains(funding_for))
+    if filter_criteria:
+        FundingResources.query.filter(
+            FundingResources.main_cat.contains(funding_for)).filter(
+            FundingResources.keywords.contains(filter_criteria)).all()
 
     return render_template('resources.html', resources=resources, datetime=datetime)
 
@@ -217,7 +220,10 @@ def edit_resource():
             form.point_of_contact.data = current_resource.point_of_contact
             form.ga_contact.data = current_resource.ga_contact
             form.keywords.data = current_resource.keywords
-            form.main_cat.data = current_resource.main_cat
+            if current_resource.main_cat:
+                form.main_cat.data = current_resource.main_cat.value
+            else:
+                form.main_cat.data = current_resource.main_cat
         else:
             flash("you're not allowed to edit this resource...")
             return redirect(url_for('index'))
