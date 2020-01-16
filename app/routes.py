@@ -71,7 +71,6 @@ def login():
     if form.validate_on_submit():
         user = User.query.filter_by(username=form.username.data).first()
         if user is None or not user.check_password(form.password.data):
-            print("u not in data")
             flash('Invalid username or password')
             return redirect(url_for('login'))
         login_user(user, remember=form.remember_me.data)
@@ -86,10 +85,11 @@ def logout():
 
 db.create_all()
 #create sample admin user:
-u = User(username='admin', email='admin@example.com')
+#u = User(username='admin', email='admin@example.com')
+u = User.query.filter_by(username="admin").first()
 u.set_password('mypassword')
-
-db.session.add(u)
+u.make_admin()
+#db.session.add(u)
 db.session.commit()
 
 app.run(debug=True)
