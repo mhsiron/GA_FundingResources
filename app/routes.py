@@ -1,43 +1,100 @@
 
 from flask import render_template, flash, redirect, url_for, request
-from flask_login import login_user, logout_user, current_user, login_required
-from werkzeug.urls import url_parse
+from flask_login import login_user, logout_user, current_user
 from app import app, db
 from app.form import LoginForm
 import pandas as pd
 import datetime
-from config import Config
-from flask_sqlalchemy import SQLAlchemy
-from app.structures import FundingResources
-from app.models import User
+from app.models import User, Main_Categories
+from app.models import FundingResources
+import dateutil.parser
+from _pydecimal import Decimal
+import re
 
 
 ### Load init data:
 df = pd.read_csv("data/funding_opt.csv", names = ['name', 'source', 'URL', 'deadline', 'description',
-       'criteria', 'ammount', 'restrictions', 'timeline', 'point_of_contact',
+       'criteria', 'amount', 'restrictions', 'timeline', 'point_of_contact',
        'ga_contact', 'keywords','main_cat'])
+df = df.drop(df.index[0])
 df = df.fillna(False)
+df['deadline'] = pd.to_datetime(df['deadline'], errors='ignore')
 df = df.replace('\n','', regex=True)
 
-### Load data into data structure
-fd = FundingResources(df)
+
+#reset everything
+db.create_all()
+User.query.delete()
+FundingResources.query.delete()
+# create sample admin user:
+u = User(username='admin', email='admin@example.com')
+u.set_password('mypassword')
+u.make_admin()
+db.session.add(u)
+
+# populate resources
+for iloc in range(1,len(df)):
+    deadline = datetime.datetime(2019, 1, 1)
+
+    # clean up amount
+    amount = 0
+    try:
+        amount = Decimal(re.sub("[^0-9]", "", df.iloc[iloc].get("amount")))
+    except:
+        amount = 0
+
+    # clean up deadline
+    try:
+        deadline = dateutil.parser.parse(df.iloc[iloc].get("deadline"),fuzzy=True)
+    except:
+        deadline = datetime.datetime(2019, 1, 1)
+
+    # clean up categories:
+    categories=  df.iloc[iloc].get("categories")
+    if not categories in [e.value for e in Main_Categories]:
+        categories = None
+
+    #insert
+    try:
+        f = FundingResources(name = df.iloc[iloc]["name"],
+               source = df.iloc[iloc]['source'],
+               URL=df.iloc[iloc]['URL'],
+               deadline=deadline,
+               description=df.iloc[iloc]['description'],
+               criteria=df.iloc[iloc]['criteria'],
+               amount=amount,
+               restrictions=df.iloc[iloc]['restrictions'],
+               timeline=df.iloc[iloc]['timeline'],
+               point_of_contact=df.iloc[iloc]['point_of_contact'],
+               ga_contact=df.iloc[iloc]['ga_contact'],
+               keywords=df.iloc[iloc]['keywords'],
+               main_cat=categories
+               )
+        db.session.add(f)
+    except:
+        continue
+
+db.session.commit()
 
 
 @app.route('/')
 @app.route('/resources')
 def index():
-    resources = fd.funding_resources
+    #resources = fd.funding_resources
+    resources = FundingResources.query.all()
     return render_template('resources.html', resources=resources, datetime=datetime)
 
 @app.route('/keyword/', methods=['GET'])
 def findby():
     if request.method == 'GET':
         keyword, value = request.args.get('keyword',"description"),request.args.get('value',"")
-        resources = fd.find_by(keyword,value)
+        column_name = getattr(FundingResources, keyword)
+        resources = FundingResources.query.filter(column_name.contains(value)).all()
         return render_template('resources.html', resources=resources, datetime=datetime)
 @app.route('/keyword/<keyword>/<value>', methods=['GET'])
 def findby_url(keyword, value):
-    resources = fd.find_by(keyword, value)
+    column_name = getattr(FundingResources, keyword)
+    resources = FundingResources.query.filter(column_name.contains(value)).all()
     return render_template('resources.html', resources=resources, datetime=datetime)
 
 @app.route('/welcome/')
@@ -47,6 +104,7 @@ def welcome():
 @app.route('/applyfilter/', methods=['GET'])
 def applyfilter():
     funding_for = request.args.get('funding_for',False)
+
     myself_funding = request.args.get('myself_funding',False)
     orgfund = request.args.get('orgfund',False)
     res_fund = request.args.get('res_fund',False)
@@ -58,7 +116,11 @@ def applyfilter():
         filter_criteria = orgfund
     elif res_fund is not "gen" and res_fund:
         filter_criteria = res_fund
-    resources = fd.filter_by_type(funding_for,filter_criteria)
+
+
+    resources = FundingResources.query.filter(
+        FundingResources.main_cat.contains(funding_for)).filter(
+        FundingResources.keywords.contains(filter_criteria)).all()
 
     return render_template('resources.html', resources=resources, datetime=datetime)
 
@@ -81,15 +143,5 @@ def login():
 def logout():
     logout_user()
     return redirect(url_for('index'))
-
-
-db.create_all()
-#create sample admin user:
-#u = User(username='admin', email='admin@example.com')
-u = User.query.filter_by(username="admin").first()
-u.set_password('mypassword')
-u.make_admin()
-#db.session.add(u)
-db.session.commit()
 
 app.run(debug=True)

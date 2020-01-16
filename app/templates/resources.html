@@ -55,8 +55,8 @@
           <div class="modal-body">
             <h3>{{resource.name}}</h3>
             {% if resource.deadline %}
-              <div {% if resource.deadline < datetime.datetime.today() %} class="text-danger font-weight-bold" {% else %} class="font-weight_bold" {% endif %}>Deadline: </div>
-             <div {% if resource.deadline < datetime.datetime.today() %} class="bg-warning" {% endif %}>{{resource.deadline}}</div> {% endif %}
+              <div {% if resource.deadline < datetime.datetime.today().date() %} class="text-danger font-weight-bold" {% else %} class="font-weight_bold" {% endif %}>Deadline: </div>
+             <div {% if resource.deadline < datetime.datetime.today().date() %} class="bg-warning" {% endif %}>{{resource.deadline}}</div> {% endif %}
             {% if resource.source %}
             <h5>Offered by: </h5> {{resource.source}} {% endif %}
             {% if resource.amount %}
@@ -68,7 +68,7 @@
           <div class="modal-footer">
               <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
               {% if resource.URL %}
-              <a href="{{resource.URL.geturl()}}" class="btn btnre-primary">Website</a>
+              <a href="{{resource.URL}}" class="btn btnre-primary">Website</a>
               {% else %}
               {% endif %}
           </div>
