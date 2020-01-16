@@ -2,6 +2,7 @@ from flask_wtf import FlaskForm
 from wtforms import StringField, PasswordField, BooleanField, SubmitField, \
     TextAreaField, DateField, FloatField, SelectField
 from wtforms.validators import DataRequired, URL, Email
+from app.models import Main_Categories
 
 class LoginForm(FlaskForm):
     username = StringField('Username', validators=[DataRequired()])
@@ -23,5 +24,5 @@ class FundingResourceForm(FlaskForm):
     ga_contact = StringField('GA Contact', validators=[Email()])
     keywords = StringField('Keywords')
     main_cat = SelectField('Type of Funding',
-                           choices=[(x,x) for x in ["Personal", "Research", "Organization"]])
+                           choices=[(y.value,x) for x,y in zip(["Personal", "Research", "Organization"],Main_Categories)])
     submit = SubmitField('Add Resource')

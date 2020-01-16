@@ -164,7 +164,9 @@ def new_resource():
                              keywords=form.keywords.data,
                              main_cat=form.main_cat.data
                              )
+        print(f.__dict__)
         db.session.add(f)
+        db.session.commit()
         return redirect(url_for('index'))
     return render_template('new_resource.html', title='Sign In', form=form)
 
