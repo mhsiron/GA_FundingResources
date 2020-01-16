@@ -17,21 +17,31 @@
 
     <br>
     <div class="container" id="dataTables_filter" style="width: 80%">
+        {% if editable %}
+        <a href="{{ url_for('new_resource')}}" class="btn btn-info" role="button">Add Resource</a> <p></p>
+        {% endif %}
         <table style="width:100%" id="resource-data" class="display">
             <thead>
               <tr>
-                <td>Name</td>
-                <td>Description</td>
-                <td>Deadline</td>
+                  <td>Name</td>
+                  <td>Description</td>
+                  <td>Amount</td>
+                  <td>Deadline</td>
                   <td> </td>
               </tr>
             </thead>
             <tbody>
             {% for resource in resources %}
                 <tr>
-                    <td>{{ resource.name }}</a></td>
+                    <td> {% if not resource.URL in [None, False, 0, "0", ""]%}
+                        <a href="{{resource.URL}}">{{resource.name}}</a>
+                        {% else %}
+                        {{ resource.name }}
+
+                        {% endif %} </a></td>
                     <td>{{ resource.description }}</td>
-                    <td>{{ resource.deadline}}</td>
+                    <td>{% if resource.amount in [0,"0", False, None] %} <span class="badge badge-pill badge-info">Please see website...</span> {% else %} {{ resource.amount }} {% endif %} </td>
+                    <td><div {% if resource.deadline < datetime.datetime.today().date() %} class="text-danger font-weight-bold" {% else %} class="font-weight_bold" {% endif %}> {{resource.deadline}} </div></td>
                     <td><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myOutput{{ resource.id }}">Details</button>
                         {% if editable %}
                         <a href="/edit_resource?id={{resource.id}}" class="btn btn-warning" role="button">Edit</a>
