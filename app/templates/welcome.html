@@ -1,6 +1,23 @@
 {% extends "base.html" %}
 
+{% block head %}
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/foundation/6.4.3/css/foundation.min.css" rel="stylesheet" type="text/css" />
+    <link href="https://cdn.datatables.net/1.10.20/css/dataTables.foundation.min.css" rel="stylesheet" type="text/css" />
+
+
+
+{% endblock %}
+
 {% block content %}
+
+<div class=container"><br>
+    <div class="row align-items-center justify-content-center">
+        <div class="col-lg-8">
 
 <form class="form-horizontal" action="/applyfilter">
 <fieldset>
@@ -27,9 +44,9 @@
   <div class="col-md-5">
     <select id="myself_funding" name="myself_funding" class="form-control">
         <option value="gen">Any...</option>
-        <option value="nat_fel">National fellowship</option>
-        <option value="int_fel">Internal fellowship</option>
-        <option value="fin_aid">Financial assistance</option>
+        <option value="national fellowship">National fellowship</option>
+        <option value="internaltional fellowship">Internal fellowship</option>
+        <option value="financial aid">Financial assistance</option>
         <option value="work">Work</option>
     </select>
   </div>
@@ -41,9 +58,9 @@
   <div class="col-md-5">
     <select id="orgfund" name="orgfund" class="form-control">
       <option value="gen">Any</option>
-      <option value="prom">promotional</option>
+      <option value="promotional">promotional</option>
       <option value="event">an event</option>
-      <option value="proj">a project</option>
+      <option value="project">a project</option>
     </select>
   </div>
 </div>
@@ -74,6 +91,10 @@
 </fieldset>
 </form>
 
+        </div>
+    </div>
+</div>
+
 <script>
     var ddl = document.getElementById("funding_for");
     ddl.onchange=newCustomerType;
@@ -83,29 +104,20 @@
         var selectedValue = ddl.options[ddl.selectedIndex].value;
 
 
-        if (selectedValue == "myself")
+        if (selectedValue == "personal")
         {
-            document.getElementById("myself_funding").style.display = "block";
-            document.getElementById("orgfund").style.display = "none";
-            document.getElementById("res_fund").style.display = "none";
             document.getElementById("q2-group").style.display = "block";
             document.getElementById("q3-group").style.display = "none";
             document.getElementById("q4-group").style.display = "none";
         }
-        if (selectedValue == "myresearch")
+        if (selectedValue == "research")
         {
-            document.getElementById("myself_funding").style.display = "none";
-            document.getElementById("orgfund").style.display = "none";
-            document.getElementById("res_fund").style.display = "block";
             document.getElementById("q2-group").style.display = "none";
             document.getElementById("q3-group").style.display = "none";
             document.getElementById("q4-group").style.display = "block";
         }
-        if (selectedValue == "myorg")
+        if (selectedValue == "organization")
         {
-            document.getElementById("myself_funding").style.display = "none";
-            document.getElementById("orgfund").style.display = "block";
-            document.getElementById("res_fund").style.display = "none";
             document.getElementById("q2-group").style.display = "none";
             document.getElementById("q3-group").style.display = "block";
             document.getElementById("q4-group").style.display = "none";

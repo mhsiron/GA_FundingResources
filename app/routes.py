@@ -110,22 +110,20 @@ def applyfilter():
     orgfund = request.args.get('orgfund',False)
     res_fund = request.args.get('res_fund',False)
 
-    filter_criteria = None
-    if myself_funding is not "gen" and myself_funding:
-        filter_criteria = myself_funding
-    elif orgfund is not "gen" and orgfund:
-        filter_criteria = orgfund
-    elif res_fund is not "gen" and res_fund:
-        filter_criteria = res_fund
 
+    filter_criteria = None
+    if funding_for == "personal":
+        filter_criteria = myself_funding
+    elif funding_for == "organization":
+        filter_criteria = orgfund
+    elif funding_for == "research":
+        filter_criteria = res_fund
 
     resources = FundingResources.query.filter(
         FundingResources.main_cat.contains(funding_for))
-    if filter_criteria:
-        FundingResources.query.filter(
-            FundingResources.main_cat.contains(funding_for)).filter(
-            FundingResources.keywords.contains(filter_criteria)).all()
-
+    if filter_criteria != "gen":
+        print(filter_criteria,funding_for)
+        resources = FundingResources.query.filter(FundingResources.main_cat == funding_for, FundingResources.keywords.like("%{}%".format(filter_criteria))).all()
     return render_template('resources.html', resources=resources, datetime=datetime)
 
 
@@ -173,7 +171,7 @@ def new_resource():
         print(f.__dict__)
         db.session.add(f)
         db.session.commit()
-        return redirect(url_for('index'))
+        return redirect(url_for('manage'))
     return render_template('new_resource.html', title='Sign In', form=form)
 
 @app.route('/edit_resource', methods=['GET', 'POST'])
@@ -199,7 +197,7 @@ def edit_resource():
         if (current_resource.user_id == current_user.id or current_user.is_admin()):
             db.session.commit()
             flash('Your changes have been saved.')
-            return redirect(url_for('index'))
+            return redirect(url_for('manage'))
         else:
             flash("you're not allowed to edit this resource...")
             return redirect(url_for('index'))
