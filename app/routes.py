@@ -2,7 +2,7 @@
 from flask import render_template, flash, redirect, url_for, request
 from flask_login import login_user, logout_user, current_user
 from app import app, db
-from app.form import LoginForm
+from app.form import LoginForm, FundingResourceForm
 import pandas as pd
 import datetime
 from app.models import User, Main_Categories
@@ -143,5 +143,29 @@ def login():
 def logout():
     logout_user()
     return redirect(url_for('index'))
+
+@app.route('/new_resource', methods=['GET', 'POST'])
+def new_resource():
+    if current_user.is_anonymous:
+        return redirect(url_for('index'))
+    form = FundingResourceForm()
+    if form.validate_on_submit():
+        f = FundingResources(name=form.name.data,
+                             source=form.source.data,
+                             URL=form.URL.data,
+                             deadline=form.deadline.data,
+                             description=form.description.data,
+                             criteria=form.criteria.data,
+                             amount=form.amount.data,
+                             restrictions=form.restrictions.data,
+                             timeline=form.timeline.data,
+                             point_of_contact=form.point_of_contact.data,
+                             ga_contact=form.ga_contact.data,
+                             keywords=form.keywords.data,
+                             main_cat=form.main_cat.data
+                             )
+        db.session.add(f)
+        return redirect(url_for('index'))
+    return render_template('new_resource.html', title='Sign In', form=form)
 
 app.run(debug=True)
