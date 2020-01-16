@@ -1,27 +1,32 @@
 {% extends "base.html" %}
 
 
+
 {% block content %}
-<div class="form-group col-sm-3">
+<div class=container"><br>
+    <div class="row align-items-center justify-content-center">
+        <div class="col-lg-8">
     <h1>Sign In</h1>
     <form action="" class="form-horizontal" method="post" novalidate>
         {{ form.hidden_tag() }}
-        <div class="control-label col-sm-3">
-            {{ form.username.label }}<br>
-            {{ form.username(size=32) }}<br>
+        <div class="form-group">
+            <label class="col-md-4 control-label"> {{ form.username.label }} </label>
+            <div class="col-md-5">
+                {{ form.username(size=32) }}</div><br>
             {% for error in form.username.errors %}
             <span style="color: red;">[{{ error }}]</span>
             {% endfor %}
         </div>
-        <div class="control-label col-sm-3">
-            {{ form.password.label }}<br>
-            {{ form.password(size=32) }}<br>
+        <div class="form-group">
+            <label class="col-md-4 control-label">{{ form.password.label }} </label>
+            <div class="col-md-5">
+                {{ form.password(size=32) }}</div><br>
             {% for error in form.password.errors %}
             <span style="color: red;">[{{ error }}]</span>
             {% endfor %}
         </div>
-        <div class="col-sm-9">{{ form.remember_me() }} {{ form.remember_me.label }}</div>
+        <div class="col-sm-9">{{ form.remember_me() }} <label class="col-md-4 control-label">{{ form.remember_me.label }}</label></div>
         <div  class="col-sm-9">{{ form.submit() }}</div>
     </form>
-</div>
+        </div></div></div>
 {% endblock %}
