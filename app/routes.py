@@ -1,8 +1,8 @@
 
 from flask import render_template, flash, redirect, url_for, request
-from flask_login import login_user, logout_user, current_user
+from flask_login import login_user, logout_user, current_user, login_required
 from app import app, db
-from app.form import LoginForm, FundingResourceForm
+from app.form import LoginForm, FundingResourceForm, FundingResourceUpdateForm
 import pandas as pd
 import datetime
 from app.models import User, Main_Categories
@@ -31,6 +31,7 @@ u = User(username='admin', email='admin@example.com')
 u.set_password('mypassword')
 u.make_admin()
 db.session.add(u)
+db.session.commit()
 
 # populate resources
 for iloc in range(1,len(df)):
@@ -57,19 +58,19 @@ for iloc in range(1,len(df)):
     #insert
     try:
         f = FundingResources(name = df.iloc[iloc]["name"],
-               source = df.iloc[iloc]['source'],
-               URL=df.iloc[iloc]['URL'],
-               deadline=deadline,
-               description=df.iloc[iloc]['description'],
-               criteria=df.iloc[iloc]['criteria'],
-               amount=amount,
-               restrictions=df.iloc[iloc]['restrictions'],
-               timeline=df.iloc[iloc]['timeline'],
-               point_of_contact=df.iloc[iloc]['point_of_contact'],
-               ga_contact=df.iloc[iloc]['ga_contact'],
-               keywords=df.iloc[iloc]['keywords'],
-               main_cat=categories
-               )
+                             source = df.iloc[iloc]['source'],
+                             URL=df.iloc[iloc]['URL'],
+                             deadline=deadline,
+                             description=df.iloc[iloc]['description'],
+                             criteria=df.iloc[iloc]['criteria'],
+                             amount=amount,
+                             restrictions=df.iloc[iloc]['restrictions'],
+                             timeline=df.iloc[iloc]['timeline'],
+                             point_of_contact=df.iloc[iloc]['point_of_contact'],
+                             ga_contact=df.iloc[iloc]['ga_contact'],
+                             keywords=df.iloc[iloc]['keywords'],
+                             main_cat=categories,
+                             user_id=1)
         db.session.add(f)
     except:
         continue
@@ -145,6 +146,7 @@ def logout():
     return redirect(url_for('index'))
 
 @app.route('/new_resource', methods=['GET', 'POST'])
+@login_required
 def new_resource():
     if current_user.is_anonymous:
         return redirect(url_for('index'))
@@ -162,12 +164,78 @@ def new_resource():
                              point_of_contact=form.point_of_contact.data,
                              ga_contact=form.ga_contact.data,
                              keywords=form.keywords.data,
-                             main_cat=form.main_cat.data
+                             main_cat=form.main_cat.data,
+                             user_id=current_user.id
                              )
         print(f.__dict__)
         db.session.add(f)
         db.session.commit()
         return redirect(url_for('index'))
     return render_template('new_resource.html', title='Sign In', form=form)
+
+@app.route('/edit_resource', methods=['GET', 'POST'])
+@login_required
+def edit_resource():
+    form = FundingResourceUpdateForm()
+    if form.validate_on_submit():
+        id = form.id.data
+        current_resource = FundingResources.query.filter_by(id=id).first()
+        current_resource.name = form.name.data
+        current_resource.deadline = form.deadline.data
+        current_resource.source = form.source.data
+        current_resource.URL = form.URL.data
+        current_resource.description = form.description.data
+        current_resource.criteria = form.criteria.data
+        current_resource.amount = form.amount.data
+        current_resource.restrictions = form.restrictions.data
+        current_resource.timeline = form.timeline.data
+        current_resource.point_of_contact = form.point_of_contact.data
+        current_resource.ga_contact = form.ga_contact.data
+        current_resource.keywords = form.keywords.data
+        current_resource.main_cat = form.main_cat.data
+        if (current_resource.user_id == current_user.id or current_user.is_admin()):
+            db.session.commit()
+            flash('Your changes have been saved.')
+            return redirect(url_for('index'))
+        else:
+            flash("you're not allowed to edit this resource...")
+            return redirect(url_for('index'))
+    if request.method == 'GET':
+        id = request.args["id"]
+        current_resource = FundingResources.query.filter_by(id=id).first()
+        if (current_resource.user_id == current_user.id or current_user.is_admin()):
+            form.id.data = id
+            form.name.data = current_resource.name
+            form.deadline.data = current_resource.deadline
+            form.source.data = current_resource.source
+            form.URL.data = current_resource.URL
+            form.description.data = current_resource.description
+            form.criteria.data = current_resource.criteria
+            form.amount.data = current_resource.amount
+            form.restrictions.data = current_resource.restrictions
+            form.timeline.data = current_resource.timeline
+            form.point_of_contact.data = current_resource.point_of_contact
+            form.ga_contact.data = current_resource.ga_contact
+            form.keywords.data = current_resource.keywords
+            form.main_cat.data = current_resource.main_cat
+        else:
+            flash("you're not allowed to edit this resource...")
+            return redirect(url_for('index'))
+    return render_template('edit_resource.html', title='Edit Resource',
+                           form=form)
+
+@app.route('/manage', methods=['GET', 'POST'])
+@login_required
+def manage():
+    if current_user.is_admin():
+        resources = FundingResources.query.all()
+        return render_template('resources.html', resources=resources,
+                               datetime=datetime, editable=True)
+    else:
+        resources = FundingResources.query.filter_by(user_id=current_user.id)
+        return render_template('resources.html', resources=resources,
+                               datetime=datetime, editable=True)
+
+
 
 app.run(debug=True)

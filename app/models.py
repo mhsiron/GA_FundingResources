@@ -23,6 +23,9 @@ class User(UserMixin, db.Model):
     def make_admin(self):
         self.group = "admin"
 
+    def is_admin(self):
+        return self.group == "admin"
+
     def make_editor(self):
         self.group = "editor"
 
@@ -47,6 +50,7 @@ class FundingResources(db.Model):
     ga_contact = db.Column(db.String())
     keywords = db.Column(db.String())
     main_cat = db.Column(db.Enum(Main_Categories))
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
 
 
 @login.user_loader
