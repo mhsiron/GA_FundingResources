@@ -31,6 +31,11 @@ u = User(username='admin', email='admin@example.com')
 u.set_password('mypassword')
 u.make_admin()
 db.session.add(u)
+# create sample non admin user:
+u = User(username='editor', email='editor@example.com')
+u.set_password('mypassword')
+u.make_editor()
+db.session.add(u)
 db.session.commit()
 
 # populate resources
@@ -97,6 +102,13 @@ def findby_url(keyword, value):
     column_name = getattr(FundingResources, keyword)
     resources = FundingResources.query.filter(column_name.contains(value)).all()
     return render_template('resources.html', resources=resources, datetime=datetime)
+
+@app.route('/user/<id>',methods=['GET'])
+def find_by_user(id):
+    resources = FundingResources.query.filter_by(user_id=id).all()
+    user = User.query.filter_by(id=id).first()
+    return render_template('resources.html', resources=resources,
+                           datetime=datetime, user=user)
 
 @app.route('/welcome/')
 def welcome():
