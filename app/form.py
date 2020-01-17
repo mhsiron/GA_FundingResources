@@ -1,6 +1,6 @@
 from flask_wtf import FlaskForm
 from wtforms import StringField, PasswordField, BooleanField, SubmitField, \
-    TextAreaField, DateField, FloatField, SelectField, IntegerField
+    TextAreaField, DateField, FloatField, SelectField, IntegerField, RadioField
 from wtforms.validators import DataRequired, URL, Email, Optional
 from wtforms.widgets import HiddenInput
 from app.models import Main_Categories
@@ -28,5 +28,6 @@ class FundingResourceForm(FlaskForm):
     submit = SubmitField('Add Resource')
 
 class FundingResourceUpdateForm(FundingResourceForm):
+    is_enabled = BooleanField('Enabled')
     submit = SubmitField('Update Resource')
-    id = IntegerField(widget=HiddenInput())
+    id = IntegerField(label="",widget=HiddenInput())

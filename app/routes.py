@@ -75,7 +75,8 @@ for iloc in range(1,len(df)):
                              ga_contact=df.iloc[iloc]['ga_contact'],
                              keywords=df.iloc[iloc]['keywords'],
                              main_cat=categories,
-                             user_id=1)
+                             user_id=1,
+                             is_enabled=True)
         db.session.add(f)
     except:
         continue
@@ -178,7 +179,8 @@ def new_resource():
                              ga_contact=form.ga_contact.data,
                              keywords=form.keywords.data,
                              main_cat=form.main_cat.data,
-                             user_id=current_user.id
+                             user_id=current_user.id,
+                             is_enabled=True
                              )
         print(f.__dict__)
         db.session.add(f)
@@ -206,6 +208,7 @@ def edit_resource():
         current_resource.ga_contact = form.ga_contact.data
         current_resource.keywords = form.keywords.data
         current_resource.main_cat = form.main_cat.data
+        current_resource.is_enabled = form.is_enabled.data
         if (current_resource.user_id == current_user.id or current_user.is_admin()):
             db.session.commit()
             flash('Your changes have been saved.')
@@ -230,6 +233,7 @@ def edit_resource():
             form.point_of_contact.data = current_resource.point_of_contact
             form.ga_contact.data = current_resource.ga_contact
             form.keywords.data = current_resource.keywords
+            form.is_enabled.data = current_resource.is_enabled
             if current_resource.main_cat:
                 form.main_cat.data = current_resource.main_cat.value
             else:

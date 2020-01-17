@@ -62,6 +62,15 @@ class FundingResources(db.Model):
     keywords = db.Column(db.String())
     main_cat = db.Column(db.Enum(Main_Categories))
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
+    is_enabled = db.Column(db.Boolean())
+
+    def disable(self):
+        self.is_enabled = False
+
+    def enable(self):
+        self.is_enabled = True
+
+
 
 
 @login.user_loader
