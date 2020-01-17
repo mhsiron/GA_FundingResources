@@ -46,6 +46,26 @@ class Main_Categories(enum.Enum):
             else item  # a ValueError thrown if item is not defined in cls.
         return item.value
 
+class Alert_Type(enum.Enum):
+    primary = "primary"
+    secondary =  "secondary"
+    success = "success"
+    danger = "danger"
+    warning = "warning"
+    info = "info"
+    dark = "dark"
+
+    @classmethod
+    def choices(cls):
+        return [(choice.name, choice.value) for choice in cls]
+
+    @classmethod
+    def coerce(cls, item):
+        item = cls(item) \
+            if not isinstance(item, cls) \
+            else item  # a ValueError thrown if item is not defined in cls.
+        return item.value
+
 class FundingResources(db.Model):
     id = db.Column(db.Integer, primary_key= True)
     name  = db.Column(db.String(120), index=True, unique=True)
@@ -70,8 +90,13 @@ class FundingResources(db.Model):
     def enable(self):
         self.is_enabled = True
 
-
-
+class FundingResourceComments(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    posted_date = db.Column(db.Date())
+    comment = db.Column(db.String())
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
+    funding_id = db.Column(db.Integer, db.ForeignKey('funding_resources.id'))
+    comment_type = db.Column(db.Enum(Alert_Type))
 
 @login.user_loader
 def load_user(id):

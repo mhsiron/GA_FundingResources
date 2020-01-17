@@ -3,7 +3,7 @@ from wtforms import StringField, PasswordField, BooleanField, SubmitField, \
     TextAreaField, DateField, FloatField, SelectField, IntegerField, RadioField
 from wtforms.validators import DataRequired, URL, Email, Optional
 from wtforms.widgets import HiddenInput
-from app.models import Main_Categories
+from app.models import Main_Categories, Alert_Type
 
 class LoginForm(FlaskForm):
     username = StringField('Username', validators=[DataRequired()])
@@ -31,3 +31,10 @@ class FundingResourceUpdateForm(FundingResourceForm):
     is_enabled = BooleanField('Enabled')
     submit = SubmitField('Update Resource')
     id = IntegerField(label="",widget=HiddenInput())
+
+class FundingResourceCommentForm(FlaskForm):
+    comment = TextAreaField('Comment')
+    comment_type = SelectField('Comment Type',
+                           choices=[(choice.name, choice.value) for choice in
+                                    Alert_Type])
+    submit = SubmitField('Add comment')

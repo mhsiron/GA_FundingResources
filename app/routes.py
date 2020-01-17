@@ -2,11 +2,10 @@
 from flask import render_template, flash, redirect, url_for, request
 from flask_login import login_user, logout_user, current_user, login_required
 from app import app, db
-from app.form import LoginForm, FundingResourceForm, FundingResourceUpdateForm
+from app.form import LoginForm, FundingResourceForm, FundingResourceUpdateForm, FundingResourceCommentForm
 import pandas as pd
 import datetime
-from app.models import User, Main_Categories
-from app.models import FundingResources
+from app.models import User, Main_Categories, FundingResources, FundingResourceComments
 import dateutil.parser
 from _pydecimal import Decimal
 import re
@@ -26,6 +25,7 @@ df = df.replace('\n','', regex=True)
 db.create_all()
 User.query.delete()
 FundingResources.query.delete()
+FundingResourceComments.query.delete()
 # create sample admin user:
 u = User(username='admin', email='admin@example.com')
 u.set_password('mypassword')
@@ -257,11 +257,58 @@ def manage():
                                datetime=datetime, editable=True, user=current_user)
 @app.route('/switchenable/<id>', methods=['GET'])
 def switchenable(id):
+    if current_user.is_anonymous:
+        flash('You are not allowed to edit this resource - please login')
+        return redirect(url_for('index'))
     current_resource = FundingResources.query.filter_by(id=id).first()
+    if current_user.id != current_resource.user_id or not current_user.is_admin():
+        flash('You are not allowed to edit this resource...')
+        return redirect(url_for('index'))
     current_resource.is_enabled = not current_resource.is_enabled
     db.session.commit()
     flash('Enabled has been set to {}'.format(current_resource.is_enabled))
     return redirect(url_for('manage'))
+
+@app.route('/resource/<id>', methods=['GET', 'POST'])
+def view_resource(id):
+    current_resource = FundingResources.query.filter_by(id=id).first()
+    comments = FundingResourceComments.query.filter_by(funding_id=id).all()
+    form = FundingResourceCommentForm()
+
+    if form.validate_on_submit():
+        c = FundingResourceComments(posted_date=datetime.date.today(),
+                                    comment=form.comment.data,
+                                    user_id=current_user.id,
+                                    funding_id=current_resource.id,
+                                    comment_type=form.comment_type.data)
+        db.session.add(c)
+        db.session.commit()
+
+        comments = FundingResourceComments.query.filter_by(funding_id=id).all()
+        return render_template('view_resource.html', resource=current_resource,
+                           datetime=datetime, comments=comments, form=form)
+
+    return render_template('view_resource.html', resource=current_resource,
+                           datetime=datetime, comments=comments, form=form)
+
+@app.route('/deletecomment/<id>', methods=['GET'])
+def deletecomment(id):
+    if current_user.is_anonymous:
+        flash('You are not allowed to edit this resource - please login')
+        return redirect(url_for('index'))
+    current_comment = FundingResourceComments.query.filter_by(id=id).first()
+    if current_user.id != current_comment.user_id or not current_user.is_admin():
+        flash('You are not allowed to edit this resource...')
+        return redirect(url_for('index'))
+    r_id = current_comment.funding_id
+    FundingResourceComments.query.filter_by(id=id).delete()
+    current_resource = FundingResources.query.filter_by(id=r_id).first()
+    db.session.commit()
+    comments = FundingResourceComments.query.filter_by(funding_id=r_id)
+    form = FundingResourceCommentForm()
+    flash('Comment deleted')
+    return redirect(url_for('view_resource',id=r_id))
+
 
 @app.errorhandler(404)
 def not_found_error(error):

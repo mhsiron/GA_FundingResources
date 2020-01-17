@@ -1,0 +1,104 @@
+{% extends "base.html" %}
+{% import "bootstrap/wtf.html" as wtf %}
+
+{% block head %}
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/foundation/6.4.3/css/foundation.min.css" rel="stylesheet" type="text/css" />
+    <link href="https://cdn.datatables.net/1.10.20/css/dataTables.foundation.min.css" rel="stylesheet" type="text/css" />
+
+
+
+{% endblock %}
+
+{% block content %}
+<br>
+<div class="container" id="main_content" style="width: 80%">
+        <h3> {{resource.name}}</h3>
+    <strong><a href="/user/{{resource.user_id}}"> View other resources managed by same account </a></strong><p></p>
+    <div class="row align-items-center">
+        <div class="col-lg-8">
+            <h5> Details:</h5>
+    <table style="width:100%" id="resource-data" class="table">
+        <tr>
+                  <td>Source</td>
+                  <td>{{resource.source}}</td>
+              </tr>
+        <tr>
+                  <td>URL</td>
+                  <td>{{resource.URL}}</td>
+              </tr>
+        <tr>
+                  <td>Deadline</td>
+                  <td>{{resource.deadline}}</td>
+              </tr>
+        <tr>
+                  <td>Description</td>
+                  <td>{{resource.description}}</td>
+              </tr>
+        <tr>
+                  <td>Criteria</td>
+                  <td>{{resource.critera}}</td>
+              </tr>
+        <tr>
+                  <td>Amount</td>
+                  <td>{{resource.amount}}</td>
+              </tr>
+        <tr>
+                  <td>Restriction</td>
+                  <td>{{resource.restriction}}</td>
+              </tr>
+        <tr>
+                  <td>Timeline</td>
+                  <td>{{resource.timeline}}</td>
+              </tr>
+        <tr>
+                  <td>Point of Contact</td>
+                  <td>{{resource.point_of_contact}}</td>
+              </tr>
+        <tr>
+                  <td>GA Contact</td>
+                  <td>{{resource.ga_contact}}</td>
+              </tr>
+    </table>
+
+            {% if comments %}<h5> Comments by resource manager:</h5> {% endif %}
+
+            {% for comment in comments %}
+
+            <div class="alert alert-{{comment.comment_type.value}} alert-dismissable" role="alert">
+              <h4 class="alert-heading">Comment by: {{comment.user_id}}</h4>
+                {% if not current_user.is_anonymous %}
+                {% if resource.user_id == current_user.id or current_user.is_admin() %}
+                <a type="button" class="close" href="/deletecomment/{{comment.id}}" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </a>{% endif %}{% endif %}
+              <p> {{comment.comment}}</p>
+              <hr>
+              <p class="mb-0"><strong>Comment posted on {{comment.posted_date}}</strong></p>
+            </div>
+
+            {% endfor %}
+            <div class=container"><br>
+                {% if not current_user.is_anonymous %}
+                {% if resource.user_id == current_user.id or current_user.is_admin() %}
+        <div class="col-md-8">
+            <h3>Add a comment: </h3>
+                <form action="" class="form-horizontal" method="post" novalidate>
+                {{ wtf.quick_form(form) }}
+<!--                <div  class="col-sm-9">{{ form.submit() }}</div>-->
+             </form>
+            {% endif %}{% endif %}
+        </div>
+</div>
+        </div></div>
+</div>
+
+
+
+
+
+{% endblock %}
