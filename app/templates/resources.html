@@ -17,12 +17,13 @@
 
     <br>
     <div class="container" id="dataTables_filter" style="width: 80%">
-        {% if user %}
+        {% if user and not editable %}
         <h3> Resources from {{user.username}}</h3>
         <strong>Email:  <a href="mail://{{user.email}}">{{user.email}}</a> </strong>
         <p></p>
         {% endif %}
         {% if editable %}
+        <h3> Manage resources for {{user.username}}</h3>
         <a href="{{ url_for('new_resource')}}" class="btn btn-info" role="button">Add Resource</a> <p></p>
         {% endif %}
         <table style="width:100%" id="resource-data" class="display">

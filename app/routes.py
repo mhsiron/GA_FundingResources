@@ -246,11 +246,11 @@ def manage():
     if current_user.is_admin():
         resources = FundingResources.query.all()
         return render_template('resources.html', resources=resources,
-                               datetime=datetime, editable=True)
+                               datetime=datetime, editable=True, user=current_user)
     else:
         resources = FundingResources.query.filter_by(user_id=current_user.id)
         return render_template('resources.html', resources=resources,
-                               datetime=datetime, editable=True)
+                               datetime=datetime, editable=True, user=current_user)
 @app.errorhandler(404)
 def not_found_error(error):
     return render_template('404.html'), 404
