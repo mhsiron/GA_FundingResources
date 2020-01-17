@@ -38,22 +38,26 @@
             </thead>
             <tbody>
             {% for resource in resources %}
+                {% if resource.is_enabled or editable %}
                 <tr>
                     <td> {% if not resource.URL in [None, False, 0, "0", ""]%}
                         <a href="{{resource.URL}}">{{resource.name}}</a>
                         {% else %}
                         {{ resource.name }}
-
-                        {% endif %} </a></td>
+                        {% endif %} {% if not resource.is_enabled %} <span class="badge badge-pill warning">DISABLED.</span> {% endif%}</td>
                     <td>{{ resource.description }}</td>
                     <td>{% if resource.amount in [0,"0", False, None] %} <span class="badge badge-pill badge-info">Please see website...</span> {% else %} {{ resource.amount }} {% endif %} </td>
                     <td><div {% if resource.deadline %} {% if resource.deadline < datetime.datetime.today().date() %} class="text-danger font-weight-bold" {% else %} class="font-weight_bold" {% endif %}{% endif %}> {{resource.deadline}} </div></td>
                     <td><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myOutput{{ resource.id }}">Details</button>
                         {% if editable %}
                         <a href="/edit_resource?id={{resource.id}}" class="btn btn-warning" role="button">Edit</a>
+                        {% if not resource.is_enabled %}
+                        <a href="/switchenable/{{resource.id}}" class="btn btn-info" role="button">Enable</a>
+                        {% endif %}
                         {% endif %}
                     </td>
                 </tr>
+                {% endif %}
             {% endfor %}
             </tbody>
         </table>

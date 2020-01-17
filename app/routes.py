@@ -255,6 +255,14 @@ def manage():
         resources = FundingResources.query.filter_by(user_id=current_user.id)
         return render_template('resources.html', resources=resources,
                                datetime=datetime, editable=True, user=current_user)
+@app.route('/switchenable/<id>', methods=['GET'])
+def switchenable(id):
+    current_resource = FundingResources.query.filter_by(id=id).first()
+    current_resource.is_enabled = not current_resource.is_enabled
+    db.session.commit()
+    flash('Enabled has been set to {}'.format(current_resource.is_enabled))
+    return redirect(url_for('manage'))
+
 @app.errorhandler(404)
 def not_found_error(error):
     return render_template('404.html'), 404
