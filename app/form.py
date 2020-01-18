@@ -1,9 +1,10 @@
 from flask_wtf import FlaskForm
 from wtforms import StringField, PasswordField, BooleanField, SubmitField, \
-    TextAreaField, DateField, FloatField, SelectField, IntegerField, RadioField
+    TextAreaField, DateField, FloatField, SelectField, IntegerField
 from wtforms.validators import DataRequired, URL, Email, Optional
 from wtforms.widgets import HiddenInput
 from app.models import Main_Categories, Alert_Type
+from flask_wtf.file import FileField, FileAllowed, FileRequired
 
 class LoginForm(FlaskForm):
     username = StringField('Username', validators=[DataRequired()])
@@ -38,3 +39,15 @@ class FundingResourceCommentForm(FlaskForm):
                            choices=[(choice.name, choice.value) for choice in
                                     Alert_Type])
     submit = SubmitField('Add comment')
+
+class EditProfileForm(FlaskForm):
+    email = StringField('Email', validators=[Email(), Optional()])
+    center_name = StringField('Center Name')
+    center_website = StringField('Center Website', validators=[URL(), Optional()])
+    center_description = TextAreaField('Center Description')
+    center_photo = FileField('Center Photo', validators=[FileAllowed(['jpg', 'png'], 'Images only!')])
+    submit = SubmitField('Edit Profile')
+
+class EditProfilePhotoForm(FlaskForm):
+    center_photo = FileField('Center Photo', validators=[FileAllowed(['jpg', 'png'], 'Images only!')])
+    submit = SubmitField('Edit Profile')

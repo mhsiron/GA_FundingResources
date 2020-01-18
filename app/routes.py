@@ -2,13 +2,15 @@
 from flask import render_template, flash, redirect, url_for, request
 from flask_login import login_user, logout_user, current_user, login_required
 from app import app, db
-from app.form import LoginForm, FundingResourceForm, FundingResourceUpdateForm, FundingResourceCommentForm
+from app.form import LoginForm, FundingResourceForm, FundingResourceUpdateForm, FundingResourceCommentForm, EditProfileForm, EditProfilePhotoForm
 import pandas as pd
 import datetime
 from app.models import User, Main_Categories, FundingResources, FundingResourceComments
 import dateutil.parser
 from _pydecimal import Decimal
 import re
+from werkzeug.utils import secure_filename
+import os
 
 
 ### Load init data:
@@ -318,6 +320,35 @@ def not_found_error(error):
 def internal_error(error):
     db.session.rollback()
     return render_template('500.html'), 500
+
+@app.route('/edit_profile', methods=['GET', 'POST'])
+@login_required
+def upload():
+    form = EditProfileForm()
+    if request.method == 'GET':
+        form.center_name.data  = current_user.center_name
+        form.email.data = current_user.email
+        form.center_website.data = current_user.center_website
+        form.center_description.data = current_user.center_description
+
+
+    if form.validate_on_submit():
+        f = form.center_photo.data
+        if f:
+            filename = secure_filename(f.filename)
+            f.save(os.path.join(app.config['USER_PHOTO_UPLOAD_PATH'], filename))
+            current_user.center_photo_path = filename
+
+        current_user.email = form.email.data
+        current_user.center_website = form.center_website.data
+        current_user.center_name = form.center_name.data
+        current_user.center_description = form.center_description.data
+
+        db.session.commit()
+
+        return redirect(url_for('find_by_user', id=current_user.id))
+
+    return render_template('edit_profile.html', form=form)
 
 
 

@@ -7,10 +7,18 @@ from werkzeug.security import generate_password_hash, check_password_hash
 class User(UserMixin, db.Model):
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(64), index=True, unique=True)
-    email = db.Column(db.String(120), index=True, unique=True)
     password_hash = db.Column(db.String(128))
     group = db.Column(db.String(20))
 
+    # custom properties for profile
+    email = db.Column(db.String(120), index=True, unique=True)
+    center_name = db.Column(db.String(120))
+    center_website = db.Column(db.String(120))
+    center_photo_path = db.Column(db.String())
+    center_description = db.Column(db.String())
+
+
+    # relational properties
     funding_resources_authored = db.relationship('FundingResources',
                                     foreign_keys='FundingResources.user_id',
                                     backref='user', lazy='dynamic')
