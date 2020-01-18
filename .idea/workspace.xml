@@ -3,8 +3,10 @@
   <component name="ChangeListManager">
     <list default="true" id="79783274-5186-4e83-b77f-990baa98d750" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/routes.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/routes.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/templates/base.html" beforeDir="false" afterPath="$PROJECT_DIR$/app/templates/base.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/templates/dashboard.html" beforeDir="false" afterPath="$PROJECT_DIR$/app/templates/dashboard.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/templates/resources.html" beforeDir="false" afterPath="$PROJECT_DIR$/app/templates/resources.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/templates/view_resource.html" beforeDir="false" afterPath="$PROJECT_DIR$/app/templates/view_resource.html" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -17,8 +19,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/routes.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="263">
-              <caret line="285" column="36" lean-forward="true" selection-start-line="285" selection-start-column="36" selection-end-line="285" selection-end-column="36" />
+            <state relative-caret-position="345">
+              <caret line="346" column="53" lean-forward="true" selection-start-line="346" selection-start-column="53" selection-end-line="346" selection-end-column="53" />
               <folding>
                 <element signature="e#1#69#0" expanded="true" />
               </folding>
@@ -29,8 +31,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/templates/resources.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="247">
-              <caret line="59" column="41" selection-start-line="59" selection-start-column="41" selection-end-line="59" selection-end-column="41" />
+            <state relative-caret-position="222">
+              <caret line="64" column="14" selection-start-line="64" selection-start-column="14" selection-end-line="64" selection-end-column="21" />
               <folding>
                 <element signature="e#759#777#0" expanded="true" />
                 <element signature="e#2370#2376#0" expanded="true" />
@@ -44,8 +46,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/templates/base.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="195">
-              <caret line="13" selection-start-line="13" selection-end-line="13" />
+            <state relative-caret-position="398">
+              <caret line="37" column="58" selection-start-line="37" selection-start-column="58" selection-end-line="37" selection-end-column="58" />
             </state>
           </provider>
         </entry>
@@ -59,10 +61,10 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/templates/view_resource.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="212">
+            <state relative-caret-position="-665">
               <caret line="22" column="111" selection-start-line="22" selection-start-column="111" selection-end-line="22" selection-end-column="111" />
               <folding>
                 <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
@@ -82,16 +84,25 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/templates/dashboard.html">
-          <provider selected="true" editor-type-id="text-editor" />
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="381">
+              <caret line="49" column="32" selection-start-line="49" selection-start-column="32" selection-end-line="49" selection-end-column="32" />
+              <folding>
+                <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
+                <element signature="e#2018#2024#0" expanded="true" />
+                <element signature="e#2025#2031#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/templates/edit_profile.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="135">
-              <caret line="9" column="100" selection-start-line="9" selection-start-column="100" selection-end-line="9" selection-end-column="100" />
+            <state>
+              <caret selection-end-line="3" selection-end-column="19" />
             </state>
           </provider>
         </entry>
@@ -132,9 +143,10 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>anon</find>
       <find>f</find>
+      <find>anon</find>
       <find>user</find>
+      <find>resource</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -167,13 +179,14 @@
         <option value="$PROJECT_DIR$/app/templates/edit_profile.html" />
         <option value="$PROJECT_DIR$/config.py" />
         <option value="$PROJECT_DIR$/app/templates/welcome.html" />
-        <option value="$PROJECT_DIR$/app/templates/base.html" />
         <option value="$PROJECT_DIR$/app/templates/login.html" />
         <option value="$PROJECT_DIR$/app/models.py" />
-        <option value="$PROJECT_DIR$/app/routes.py" />
         <option value="$PROJECT_DIR$/app/form.py" />
-        <option value="$PROJECT_DIR$/app/templates/resources.html" />
         <option value="$PROJECT_DIR$/app/templates/view_resource.html" />
+        <option value="$PROJECT_DIR$/app/templates/base.html" />
+        <option value="$PROJECT_DIR$/app/templates/resources.html" />
+        <option value="$PROJECT_DIR$/app/routes.py" />
+        <option value="$PROJECT_DIR$/app/templates/dashboard.html" />
       </list>
     </option>
   </component>
@@ -291,7 +304,7 @@
       <option name="presentableId" value="Default" />
       <updated>1578607013112</updated>
       <workItem from="1578607021946" duration="5426000" />
-      <workItem from="1578954953975" duration="70411000" />
+      <workItem from="1578954953975" duration="72897000" />
     </task>
     <task id="LOCAL-00001" summary="- added easy filter feature (front-end)&#10;- starting to implement login feature (back-end)">
       <created>1579122919850</created>
@@ -461,11 +474,25 @@
       <option name="project" value="LOCAL" />
       <updated>1579381597973</updated>
     </task>
-    <option name="localTasksCounter" value="25" />
+    <task id="LOCAL-00025" summary="edit resource from resource page, few fixes">
+      <created>1579382720242</created>
+      <option name="number" value="00025" />
+      <option name="presentableId" value="LOCAL-00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1579382720242</updated>
+    </task>
+    <task id="LOCAL-00026" summary="some fixes">
+      <created>1579383186373</created>
+      <option name="number" value="00026" />
+      <option name="presentableId" value="LOCAL-00026" />
+      <option name="project" value="LOCAL" />
+      <updated>1579383186373</updated>
+    </task>
+    <option name="localTasksCounter" value="27" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="75837000" />
+    <option name="totallyTimeSpent" value="78323000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1680" height="1050" extended-state="0" />
@@ -521,10 +548,12 @@
     <MESSAGE value="Profile edit and profile photo, and view for specific user to be able to edit center information" />
     <MESSAGE value="update to looks, fix of int passing by, and fix to who can edit certain content" />
     <MESSAGE value="Add comment headline instead of just author" />
-    <option name="LAST_COMMIT_MESSAGE" value="Add comment headline instead of just author" />
+    <MESSAGE value="edit resource from resource page, few fixes" />
+    <MESSAGE value="some fixes" />
+    <option name="LAST_COMMIT_MESSAGE" value="some fixes" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/flask_test$app.coverage" NAME="app Coverage Results" MODIFIED="1579380412499" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/flask_test$app.coverage" NAME="app Coverage Results" MODIFIED="1579384842604" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/data/entries.py" />
@@ -627,23 +656,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/templates/login.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="180">
-          <caret line="12" column="29" lean-forward="true" selection-start-line="12" selection-start-column="29" selection-end-line="12" selection-end-column="29" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/templates/dashboard.html">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/templates/base.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="195">
-          <caret line="13" selection-start-line="13" selection-end-line="13" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/form.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="272">
@@ -654,10 +666,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/templates/edit_profile.html">
+    <entry file="file://$PROJECT_DIR$/app/templates/login.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="135">
-          <caret line="9" column="100" selection-start-line="9" selection-start-column="100" selection-end-line="9" selection-end-column="100" />
+        <state relative-caret-position="180">
+          <caret line="12" column="29" lean-forward="true" selection-start-line="12" selection-start-column="29" selection-end-line="12" selection-end-column="29" />
         </state>
       </provider>
     </entry>
@@ -671,10 +683,36 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/app/templates/edit_profile.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret selection-end-line="3" selection-end-column="19" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/templates/view_resource.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-665">
+          <caret line="22" column="111" selection-start-line="22" selection-start-column="111" selection-end-line="22" selection-end-column="111" />
+          <folding>
+            <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#table#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="e#3030#3037#1" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/templates/base.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="398">
+          <caret line="37" column="58" selection-start-line="37" selection-start-column="58" selection-end-line="37" selection-end-column="58" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/app/routes.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="263">
-          <caret line="285" column="36" lean-forward="true" selection-start-line="285" selection-start-column="36" selection-end-line="285" selection-end-column="36" />
+        <state relative-caret-position="345">
+          <caret line="346" column="53" lean-forward="true" selection-start-line="346" selection-start-column="53" selection-end-line="346" selection-end-column="53" />
           <folding>
             <element signature="e#1#69#0" expanded="true" />
           </folding>
@@ -683,8 +721,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/templates/resources.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="247">
-          <caret line="59" column="41" selection-start-line="59" selection-start-column="41" selection-end-line="59" selection-end-column="41" />
+        <state relative-caret-position="222">
+          <caret line="64" column="14" selection-start-line="64" selection-start-column="14" selection-end-line="64" selection-end-column="21" />
           <folding>
             <element signature="e#759#777#0" expanded="true" />
             <element signature="e#2370#2376#0" expanded="true" />
@@ -694,14 +732,14 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/templates/view_resource.html">
+    <entry file="file://$PROJECT_DIR$/app/templates/dashboard.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="212">
-          <caret line="22" column="111" selection-start-line="22" selection-start-column="111" selection-end-line="22" selection-end-column="111" />
+        <state relative-caret-position="381">
+          <caret line="49" column="32" selection-start-line="49" selection-start-column="32" selection-end-line="49" selection-end-column="32" />
           <folding>
             <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#table#0;n#div#0;n#!!top" expanded="true" />
-            <element signature="e#3030#3037#1" expanded="true" />
+            <element signature="e#2018#2024#0" expanded="true" />
+            <element signature="e#2025#2031#0" expanded="true" />
           </folding>
         </state>
       </provider>

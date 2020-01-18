@@ -93,9 +93,9 @@
                     <td><div {% if resource.deadline %} {% if resource.deadline < datetime.datetime.today().date() %} class="text-danger font-weight-bold" {% else %} class="font-weight_bold" {% endif %}{% endif %}> {{resource.deadline}} </div></td>
                     <td><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myOutput{{ resource.id }}">Details</button>
                         {% if editable %}
-                        <a href="/edit_resource?id={{resource.id}}" class="btn btn-warning" role="button">Edit</a>
+                        <a href="{{url_for('edit_profile',id=user.id)}}" class="btn btn-warning" role="button">Edit</a>
                         {% if not resource.is_enabled %}
-                        <a href="/switchenable/{{resource.id}}" class="btn btn-info" role="button">Enable</a>
+                        <a href="{{url_for('find_by_user',id=user.id)}}" class="btn btn-info" role="button">Enable</a>
                         {% endif %}
                         {% endif %}
                     </td>

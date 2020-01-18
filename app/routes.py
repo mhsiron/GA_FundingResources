@@ -320,12 +320,13 @@ def internal_error(error):
     db.session.rollback()
     return render_template('500.html'), 500
 
-@app.route('/edit_profile')
+@app.route('/edit_profile', methods=['GET', 'POST'])
 @app.route('/edit_profile/<int:id>', methods=['GET', 'POST'])
 @login_required
 def edit_profile(id = None):
     form = EditProfileForm()
     user = current_user
+    id = id or request.args.get("id")
     if id:
         if current_user.id != id and not current_user.is_admin():
             flash("you don't have the permission to edit this profile")
@@ -355,6 +356,12 @@ def edit_profile(id = None):
         return redirect(url_for('find_by_user', id=user.id))
 
     return render_template('edit_profile.html', form=form)
+
+@app.route('/dashboard')
+@login_required
+def dashboard():
+    users = User.query.all()
+    return render_template('dashboard.html', users=users)
 
 
 

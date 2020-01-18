@@ -3,10 +3,68 @@
 
 {% block content %}
 
-<div class=container"><br>
-    <div class="row align-items-center justify-content-center">
-        <div class="col-md-4">
-            <h1>Admin Dashboard</h1>
+<div class="container" id="dataTables_filter" style="width: 80%">
+<br>
+        <div class="media">
+          <div class="media-left">
+            <a href="#">
+              {% if current_user.center_photo_path %}
+                <img class="media-object" width="200" src="{{ url_for('static', filename='user_photos/'+current_user.center_photo_path) }}">
+                {% endif %}
+            </a>
+          </div>
+          <div class="media-body">
+            <h3 class="media-heading">User dashboard for {{ current_user.center_name or current_user.username}}</h3>
+            <strong>Email:  <a href="mail://{{current_user.email}}">{{current_user.email}}</a> </strong>
+        {% if current_user.center_website %} Website:  <a href="{{current_user.center_website}}">{{current_user.center_website}}</a>{% endif %}
+        {% if current_user.center_description %} <br> {{current_user.center_description }} <p></p> {% endif %}
+
+                <a href="{{ url_for('edit_profile', id=current_user.id)}}" class="btn btn-info" role="button">Edit Profile</a> <p></p>
+          </div>
         </div>
-    </div>
+    <h3> Manage users: </h3>
+
+    <table class="table table-hover">
+        <thead class="thead-dark">
+        <tr>
+            <td scope="col" width="20%">
+                Username or Center Name
+            </td>
+            <td scope="col">
+                Details
+            </td>
+            <td scope="col" width="20%">
+                Actions
+            </td>
+        </tr>
+        </thead>
+        <tbody>
+        {% for user in users %}
+        <tr>
+            <td> <div class="media">
+                  <div class="media-left">
+                    <a href="#">
+                      {% if user.center_photo_path %}<img class="media-object thumbnail" width="60" src="{{ url_for('static', filename='user_photos/'+user.center_photo_path) }}"> {% endif %}
+                    </a>
+                  </div>
+                  &nbsp; &nbsp;  <div class="media-body">
+                     {{ user.center_name or user.username}}
+                  </div>
+                </div>
+                </td>
+            <td>Email: <a href="{{user.email}}">{{user.email}}</a>
+                {% if user.center_description %} <br>{{user.center_description}} {% endif %}
+                {% if user.center_website %} <br> <a href="{{user.center_website}}">{{user.center_website}}</a> {% endif %}
+            </td>
+            <td>
+                <a href="/edit_profile?id={{user.id}}" class="btn btn-warning" role="button">Edit Profile</a>
+                <a href="/user/{{user.id}}" class="btn btn-info" role="button">View Resources</a></td>
+        </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
 </div>
+
+
+{% endblock %}
