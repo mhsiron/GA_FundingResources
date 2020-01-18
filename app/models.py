@@ -21,12 +21,12 @@ class User(UserMixin, db.Model):
     # relational properties
     funding_resources_authored = db.relationship('FundingResources',
                                     foreign_keys='FundingResources.user_id',
-                                    backref='user', lazy='dynamic')
+                                    backref='user', lazy='select')
 
     comments_posted = db.relationship('FundingResourceComments',
                                       foreign_keys='FundingResourceComments.user_id',
                                       backref='user',
-                                      lazy='dynamic')
+                                      lazy='select')
 
     def __repr__(self):
         return '<User {}>'.format(self.username)
@@ -104,7 +104,7 @@ class FundingResources(db.Model):
     comments_posted = db.relationship('FundingResourceComments',
                                       foreign_keys='FundingResourceComments.funding_id',
                                       backref='resource',
-                                      lazy='dynamic')
+                                      lazy='select')
 
     def disable(self):
         self.is_enabled = False
@@ -116,6 +116,7 @@ class FundingResourceComments(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     posted_date = db.Column(db.Date())
     comment = db.Column(db.String())
+    comment_title = db.Column(db.String())
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
     funding_id = db.Column(db.Integer, db.ForeignKey('funding_resources.id'))
     comment_type = db.Column(db.Enum(Alert_Type))

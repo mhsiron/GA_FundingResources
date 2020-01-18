@@ -65,12 +65,12 @@
               </tr>
     </table>
 
-            {% if comments %}<h5> Comments by resource manager:</h5> {% endif %}
+            {% if resource.comments_posted is defined and resource.comments_posted|length %}<h5> Comments by resource manager:</h5>
 
-            {% for comment in comments %}
+            {% for comment in resource.comments_posted %}
 
             <div class="alert alert-{{comment.comment_type.value}} alert-dismissable" role="alert">
-              <h4 class="alert-heading">Comment by: {{comment.user.username}}</h4>
+              <h4 class="alert-heading">{{comment.comment_title}}</h4>
                 {% if not current_user.is_anonymous %}
                 {% if resource.user_id == current_user.id or current_user.is_admin() %}
                 <a type="button" class="close" href="/deletecomment/{{comment.id}}" data-dismiss="alert" aria-label="Close">
@@ -78,10 +78,10 @@
               </a>{% endif %}{% endif %}
               <p> {{comment.comment}}</p>
               <hr>
-              <p class="mb-0"><strong>Comment posted on {{comment.posted_date}}</strong></p>
+              <p class="mb-0"><strong>Comment posted on {{comment.posted_date}} by {{comment.user.username}} </strong></p>
             </div>
 
-            {% endfor %}
+            {% endfor %}{% endif %}
             <div class=container"><br>
                 {% if not current_user.is_anonymous %}
                 {% if resource.user_id == current_user.id or current_user.is_admin() %}

@@ -34,6 +34,7 @@ class FundingResourceUpdateForm(FundingResourceForm):
     id = IntegerField(label="",widget=HiddenInput())
 
 class FundingResourceCommentForm(FlaskForm):
+    comment_title = StringField('Headline', validators=[DataRequired()])
     comment = TextAreaField('Comment')
     comment_type = SelectField('Comment Type',
                            choices=[(choice.name, choice.value) for choice in

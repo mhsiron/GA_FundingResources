@@ -274,24 +274,23 @@ def switchenable(id):
 @app.route('/resource/<int:id>', methods=['GET', 'POST'])
 def view_resource(id):
     current_resource = FundingResources.query.filter_by(id=id).first()
-    comments = FundingResourceComments.query.filter_by(funding_id=id).all()
     form = FundingResourceCommentForm()
+
 
     if form.validate_on_submit():
         c = FundingResourceComments(posted_date=datetime.date.today(),
+                                    comment_title=form.comment_title.data,
                                     comment=form.comment.data,
                                     user_id=current_user.id,
                                     funding_id=current_resource.id,
                                     comment_type=form.comment_type.data)
         db.session.add(c)
         db.session.commit()
-
-        comments = FundingResourceComments.query.filter_by(funding_id=id).all()
         return render_template('view_resource.html', resource=current_resource,
-                           datetime=datetime, comments=comments, form=form)
+                           datetime=datetime, form=form)
 
     return render_template('view_resource.html', resource=current_resource,
-                           datetime=datetime, comments=comments, form=form)
+                           datetime=datetime, form=form)
 
 @app.route('/deletecomment/<id>', methods=['GET'])
 def deletecomment(id):
