@@ -42,8 +42,8 @@
 
               {% if not current_user.is_anonymous %}
 
-              {% if current_user.id == resource.user_id or current_user.is_admin() %}
-                 <p></p>
+              {% if current_user.id == user.id or current_user.is_admin() %}
+                <a href="{{ url_for('edit_profile', id=user.id)}}" class="btn btn-info" role="button">Edit Profile</a> <p></p>
               {% endif %}
 
               {% endif %}
