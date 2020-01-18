@@ -106,7 +106,7 @@ def findby_url(keyword, value):
     resources = FundingResources.query.filter(column_name.contains(value)).all()
     return render_template('resources.html', resources=resources, datetime=datetime)
 
-@app.route('/user/<id>',methods=['GET'])
+@app.route('/user/<int:id>',methods=['GET'])
 def find_by_user(id):
     resources = FundingResources.query.filter_by(user_id=id).all()
     user = User.query.filter_by(id=id).first()
@@ -257,7 +257,7 @@ def manage():
         resources = FundingResources.query.filter_by(user_id=current_user.id)
         return render_template('resources.html', resources=resources,
                                datetime=datetime, editable=True, user=current_user)
-@app.route('/switchenable/<id>', methods=['GET'])
+@app.route('/switchenable/<int:id>', methods=['GET'])
 def switchenable(id):
     if current_user.is_anonymous:
         flash('You are not allowed to edit this resource - please login')
@@ -271,7 +271,7 @@ def switchenable(id):
     flash('Enabled has been set to {}'.format(current_resource.is_enabled))
     return redirect(url_for('manage'))
 
-@app.route('/resource/<id>', methods=['GET', 'POST'])
+@app.route('/resource/<int:id>', methods=['GET', 'POST'])
 def view_resource(id):
     current_resource = FundingResources.query.filter_by(id=id).first()
     comments = FundingResourceComments.query.filter_by(funding_id=id).all()
@@ -321,15 +321,22 @@ def internal_error(error):
     db.session.rollback()
     return render_template('500.html'), 500
 
-@app.route('/edit_profile', methods=['GET', 'POST'])
+@app.route('/edit_profile')
+@app.route('/edit_profile/<int:id>', methods=['GET', 'POST'])
 @login_required
-def upload():
+def edit_profile(id = None):
     form = EditProfileForm()
+    user = current_user
+    if id:
+        if current_user.id != id and not current_user.is_admin():
+            flash("you don't have the permission to edit this profile")
+            return redirect(url_for('find_by_user', id=id))
+        user = user = User.query.filter_by(id=id).first()
     if request.method == 'GET':
-        form.center_name.data  = current_user.center_name
-        form.email.data = current_user.email
-        form.center_website.data = current_user.center_website
-        form.center_description.data = current_user.center_description
+        form.center_name.data  = user.center_name
+        form.email.data = user.email
+        form.center_website.data = user.center_website
+        form.center_description.data = user.center_description
 
 
     if form.validate_on_submit():
@@ -339,14 +346,14 @@ def upload():
             f.save(os.path.join(app.config['USER_PHOTO_UPLOAD_PATH'], filename))
             current_user.center_photo_path = filename
 
-        current_user.email = form.email.data
-        current_user.center_website = form.center_website.data
-        current_user.center_name = form.center_name.data
-        current_user.center_description = form.center_description.data
+        user.email = form.email.data
+        user.center_website = form.center_website.data
+        user.center_name = form.center_name.data
+        user.center_description = form.center_description.data
 
         db.session.commit()
 
-        return redirect(url_for('find_by_user', id=current_user.id))
+        return redirect(url_for('find_by_user', id=user.id))
 
     return render_template('edit_profile.html', form=form)
 

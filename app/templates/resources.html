@@ -1,5 +1,11 @@
 {% extends "base.html" %}
 
+{% if editable %}
+{% set active_page = "manage" %}
+{% else %}
+{% set active_page = "home" %}
+{% endif%}
+
 {% block head %}
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -34,14 +40,33 @@
         {% if user.center_website %} Website:  <a href="{{user.center_website}}">{{user.center_website}}</a>{% endif %}
         {% if user.center_description %} <br> {{user.center_description }} <p></p> {% endif %}
 
+              {% if not current_user.is_anonymous %}
+
+              {% if current_user.id == user.id or current_user.is_admin() %}
+                <a href="{{ url_for('edit_profile', id=user.id)}}" class="btn btn-info" role="button">Edit Profile</a> <p></p>
+              {% endif %}
+
+              {% endif %}
+
           </div>
         </div>
         {% endif %}
 
 
         {% if editable %}
+
         <h3> Manage resources for {{user.username}}</h3>
+        <div class="btn-group">
         <a href="{{ url_for('new_resource')}}" class="btn btn-info" role="button">Add Resource</a> <p></p>
+
+        {% if not current_user.is_anonymous %}
+
+              {% if current_user.id == user.id or current_user.is_admin() %}
+              &nbsp;  <a href="{{ url_for('edit_profile', id=user.id)}}" class="btn btn-warning" role="button">Edit Profile</a> <p></p>
+              {% endif %}
+
+            {% endif %}</div>
+        <p></p>
         {% endif %}
         <table style="width:100%" id="resource-data" class="display">
             <thead>
