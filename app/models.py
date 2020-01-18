@@ -15,6 +15,11 @@ class User(UserMixin, db.Model):
                                     foreign_keys='FundingResources.user_id',
                                     backref='user', lazy='dynamic')
 
+    comments_posted = db.relationship('FundingResourceComments',
+                                      foreign_keys='FundingResourceComments.user_id',
+                                      backref='user',
+                                      lazy='dynamic')
+
     def __repr__(self):
         return '<User {}>'.format(self.username)
 
@@ -87,6 +92,11 @@ class FundingResources(db.Model):
     main_cat = db.Column(db.Enum(Main_Categories))
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
     is_enabled = db.Column(db.Boolean())
+
+    comments_posted = db.relationship('FundingResourceComments',
+                                      foreign_keys='FundingResourceComments.funding_id',
+                                      backref='resource',
+                                      lazy='dynamic')
 
     def disable(self):
         self.is_enabled = False

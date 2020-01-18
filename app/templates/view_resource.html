@@ -18,7 +18,7 @@
 <br>
 <div class="container" id="main_content" style="width: 80%">
         <h3> {{resource.name}}</h3>
-    <strong><a href="/user/{{resource.user_id}}"> View other resources managed by same account </a></strong><p></p>
+    <strong><a href="/user/{{resource.user_id}}"> View other resources managed by {{resource.user.username}} </a></strong><p></p>
     <div class="row align-items-center">
         <div class="col-lg-8">
             <h5> Details:</h5>
@@ -70,7 +70,7 @@
             {% for comment in comments %}
 
             <div class="alert alert-{{comment.comment_type.value}} alert-dismissable" role="alert">
-              <h4 class="alert-heading">Comment by: {{comment.user_id}}</h4>
+              <h4 class="alert-heading">Comment by: {{comment.user.username}}</h4>
                 {% if not current_user.is_anonymous %}
                 {% if resource.user_id == current_user.id or current_user.is_admin() %}
                 <a type="button" class="close" href="/deletecomment/{{comment.id}}" data-dismiss="alert" aria-label="Close">
