@@ -15,10 +15,15 @@
 {% endblock %}
 
 {% block content %}
+{% if resource %}
 <br>
 <div class="container" id="main_content" style="width: 80%">
         <h3> {{resource.name}}</h3>
-    <strong><a href="/user/{{resource.user_id}}"> View other resources managed by {{resource.user.username}} </a></strong><p></p>
+    <strong><a href="/user/{{resource.user_id}}"> View other resources managed by {{ resource.user.center_name or resource.user.username}} </a></strong>
+    {% if not current_user.is_anonymous %} {% if current_user == resource.user or current_user.is_admin() %}<p></p>
+    <a href="{{ url_for('edit_resource', id=resource.id)}}" class="btn btn-info" role="button">Edit Resource</a>
+    {% endif %}{% endif %}
+    <p></p>
     <div class="row align-items-center">
         <div class="col-lg-8">
             <h5> Details:</h5>
@@ -78,7 +83,7 @@
               </a>{% endif %}{% endif %}
               <p> {{comment.comment}}</p>
               <hr>
-              <p class="mb-0"><strong>Comment posted on {{comment.posted_date}} by {{comment.user.username}} </strong></p>
+              <p class="mb-0"><strong>Comment posted on {{comment.posted_date}} by {{ comment.user.center_name or comment.user.username}}</strong></p>
             </div>
 
             {% endfor %}{% endif %}
@@ -97,7 +102,11 @@
         </div></div>
 </div>
 
+{% else %}
 
+No resource found...
+
+{% endif %}
 
 
 
