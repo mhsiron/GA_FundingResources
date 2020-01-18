@@ -11,6 +11,10 @@ class User(UserMixin, db.Model):
     password_hash = db.Column(db.String(128))
     group = db.Column(db.String(20))
 
+    funding_resources_authored = db.relationship('FundingResources',
+                                    foreign_keys='FundingResources.user_id',
+                                    backref='user', lazy='dynamic')
+
     def __repr__(self):
         return '<User {}>'.format(self.username)
 

@@ -297,7 +297,7 @@ def deletecomment(id):
         flash('You are not allowed to edit this resource - please login')
         return redirect(url_for('index'))
     current_comment = FundingResourceComments.query.filter_by(id=id).first()
-    if current_user.id != current_comment.user_id or not current_user.is_admin():
+    if current_user.id != current_comment.user_id and current_user.is_admin():
         flash('You are not allowed to edit this resource...')
         return redirect(url_for('index'))
     r_id = current_comment.funding_id
