@@ -1,5 +1,5 @@
 
-from flask import render_template, flash, redirect, url_for, request
+from flask import render_template, flash, redirect, url_for, request, session
 from flask_login import login_user, logout_user, current_user, login_required
 from app import app, db
 from app.form import LoginForm, FundingResourceForm, FundingResourceUpdateForm, FundingResourceCommentForm, EditProfileForm, EditProfilePhotoForm
@@ -89,7 +89,6 @@ db.session.commit()
 @app.route('/')
 @app.route('/resources')
 def index():
-    #resources = fd.funding_resources
     resources = FundingResources.query.all()
     return render_template('resources.html', resources=resources, datetime=datetime)
 
@@ -324,6 +323,7 @@ def internal_error(error):
 @app.route('/edit_profile/<int:id>', methods=['GET', 'POST'])
 @login_required
 def edit_profile(id = None):
+    session['url'] = 'edit_profile'
     form = EditProfileForm()
     user = current_user
     id = id or request.args.get("id")
@@ -332,6 +332,7 @@ def edit_profile(id = None):
             flash("you don't have the permission to edit this profile")
             return redirect(url_for('find_by_user', id=id))
         user = user = User.query.filter_by(id=id).first()
+
     if request.method == 'GET':
         form.center_name.data  = user.center_name
         form.email.data = user.email
@@ -340,11 +341,12 @@ def edit_profile(id = None):
 
 
     if form.validate_on_submit():
+        print(user)
         f = form.center_photo.data
         if f:
             filename = secure_filename(f.filename)
             f.save(os.path.join(app.config['USER_PHOTO_UPLOAD_PATH'], filename))
-            current_user.center_photo_path = filename
+            user.center_photo_path = filename
 
         user.email = form.email.data
         user.center_website = form.center_website.data
