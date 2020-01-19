@@ -2,7 +2,7 @@
 	"schemaVersion" :2 ,
 	"dockerfileLines" :[
 		"FROM ubuntu:16.04",
-		"RUN RUN apt-get update -y && apt-get install -y python-pip python-dev",
+		"RUN apt-get update -y && apt-get install -y python-pip python-dev",
 		"RUN mkdir -p /usr/src/app",
         "WORKDIR /usr/src/app",
 		"COPY ./app /usr/src/app/",
