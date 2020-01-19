@@ -2,7 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="79783274-5186-4e83-b77f-990baa98d750" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/captain-definition" beforeDir="false" afterPath="$PROJECT_DIR$/captain-definition" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/requirements.txt" beforeDir="false" afterPath="$PROJECT_DIR$/requirements.txt" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -24,20 +25,20 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/captain-definition">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="135">
-              <caret line="9" column="33" selection-start-line="9" selection-start-column="33" selection-end-line="9" selection-end-column="33" />
+            <state relative-caret-position="150">
+              <caret line="10" column="40" selection-start-line="10" selection-start-column="40" selection-end-line="10" selection-end-column="40" />
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/requirements.txt">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="140">
-              <caret line="39" column="13" selection-start-line="39" selection-start-column="13" selection-end-line="39" selection-end-column="13" />
+            <state relative-caret-position="171">
+              <caret line="42" column="12" lean-forward="true" selection-start-line="42" selection-start-column="12" selection-end-line="42" selection-end-column="12" />
             </state>
           </provider>
         </entry>
@@ -180,8 +181,8 @@
         <option value="$PROJECT_DIR$/app/templates/dashboard.html" />
         <option value="$PROJECT_DIR$/app/templates/base.html" />
         <option value="$PROJECT_DIR$/app/routes.py" />
-        <option value="$PROJECT_DIR$/requirements.txt" />
         <option value="$PROJECT_DIR$/captain-definition" />
+        <option value="$PROJECT_DIR$/requirements.txt" />
       </list>
     </option>
   </component>
@@ -289,7 +290,7 @@
       <option name="presentableId" value="Default" />
       <updated>1578607013112</updated>
       <workItem from="1578607021946" duration="5426000" />
-      <workItem from="1578954953975" duration="76463000" />
+      <workItem from="1578954953975" duration="76989000" />
     </task>
     <task id="LOCAL-00001" summary="- added easy filter feature (front-end)&#10;- starting to implement login feature (back-end)">
       <created>1579122919850</created>
@@ -571,11 +572,39 @@
       <option name="project" value="LOCAL" />
       <updated>1579476227442</updated>
     </task>
-    <option name="localTasksCounter" value="41" />
+    <task id="LOCAL-00041" summary="add cython req for np">
+      <created>1579476427872</created>
+      <option name="number" value="00041" />
+      <option name="presentableId" value="LOCAL-00041" />
+      <option name="project" value="LOCAL" />
+      <updated>1579476427872</updated>
+    </task>
+    <task id="LOCAL-00042" summary="cython install on alpine fix">
+      <created>1579476532150</created>
+      <option name="number" value="00042" />
+      <option name="presentableId" value="LOCAL-00042" />
+      <option name="project" value="LOCAL" />
+      <updated>1579476532150</updated>
+    </task>
+    <task id="LOCAL-00043" summary="comma not dot">
+      <created>1579476569026</created>
+      <option name="number" value="00043" />
+      <option name="presentableId" value="LOCAL-00043" />
+      <option name="project" value="LOCAL" />
+      <updated>1579476569026</updated>
+    </task>
+    <task id="LOCAL-00044" summary="old pip upgrade">
+      <created>1579476948485</created>
+      <option name="number" value="00044" />
+      <option name="presentableId" value="LOCAL-00044" />
+      <option name="project" value="LOCAL" />
+      <updated>1579476948485</updated>
+    </task>
+    <option name="localTasksCounter" value="45" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="81889000" />
+    <option name="totallyTimeSpent" value="82415000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1680" height="1050" extended-state="0" />
@@ -608,10 +637,6 @@
     <option name="version" value="1" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="404, 500 error" />
-    <MESSAGE value="Fix to filter and to editing main funding category" />
-    <MESSAGE value="Fix filter fund function for multiple filters and fix problem with bootstrap on all pages" />
-    <MESSAGE value="Changes to interface -&gt; add new resource button, more details on resources table for no amount or for expired deadline" />
     <MESSAGE value="changes to login screen formatting" />
     <MESSAGE value="remove non-project file" />
     <MESSAGE value="Create user based filter for resources (so you can find other resources from same author - ie if a unit publishes many different resources). Also start building framework for editing profile and admin dashboard." />
@@ -633,7 +658,11 @@
     <MESSAGE value="remove mklfft" />
     <MESSAGE value="remove other unused libraries" />
     <MESSAGE value="remove opencv" />
-    <option name="LAST_COMMIT_MESSAGE" value="remove opencv" />
+    <MESSAGE value="add cython req for np" />
+    <MESSAGE value="cython install on alpine fix" />
+    <MESSAGE value="comma not dot" />
+    <MESSAGE value="old pip upgrade" />
+    <option name="LAST_COMMIT_MESSAGE" value="old pip upgrade" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/flask_test$app.coverage" NAME="app Coverage Results" MODIFIED="1579384842604" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
@@ -827,17 +856,17 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/requirements.txt">
+    <entry file="file://$PROJECT_DIR$/captain-definition">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="140">
-          <caret line="39" column="13" selection-start-line="39" selection-start-column="13" selection-end-line="39" selection-end-column="13" />
+        <state relative-caret-position="150">
+          <caret line="10" column="40" selection-start-line="10" selection-start-column="40" selection-end-line="10" selection-end-column="40" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/captain-definition">
+    <entry file="file://$PROJECT_DIR$/requirements.txt">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="135">
-          <caret line="9" column="33" selection-start-line="9" selection-start-column="33" selection-end-line="9" selection-end-column="33" />
+        <state relative-caret-position="171">
+          <caret line="42" column="12" lean-forward="true" selection-start-line="42" selection-start-column="12" selection-end-line="42" selection-end-column="12" />
         </state>
       </provider>
     </entry>
