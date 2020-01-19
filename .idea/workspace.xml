@@ -2,8 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="79783274-5186-4e83-b77f-990baa98d750" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/captain-definition" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/captain-definition" beforeDir="false" afterPath="$PROJECT_DIR$/captain-definition" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -25,20 +25,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/captain-definition">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="165">
-              <caret line="11" column="1" lean-forward="true" selection-start-line="11" selection-start-column="1" selection-end-line="11" selection-end-column="1" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/requirements.txt">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="218">
-              <caret line="90" column="15" lean-forward="true" selection-start-line="90" selection-start-column="15" selection-end-line="90" selection-end-column="15" />
+            <state relative-caret-position="45">
+              <caret line="3" column="35" selection-start-line="3" selection-start-column="35" selection-end-line="3" selection-end-column="35" />
             </state>
           </provider>
         </entry>
@@ -285,7 +276,7 @@
       <option name="presentableId" value="Default" />
       <updated>1578607013112</updated>
       <workItem from="1578607021946" duration="5426000" />
-      <workItem from="1578954953975" duration="75179000" />
+      <workItem from="1578954953975" duration="75470000" />
     </task>
     <task id="LOCAL-00001" summary="- added easy filter feature (front-end)&#10;- starting to implement login feature (back-end)">
       <created>1579122919850</created>
@@ -483,11 +474,25 @@
       <option name="project" value="LOCAL" />
       <updated>1579414165030</updated>
     </task>
-    <option name="localTasksCounter" value="29" />
+    <task id="LOCAL-00029" summary="add environment information for easy deployment">
+      <created>1579474967624</created>
+      <option name="number" value="00029" />
+      <option name="presentableId" value="LOCAL-00029" />
+      <option name="project" value="LOCAL" />
+      <updated>1579474967624</updated>
+    </task>
+    <task id="LOCAL-00030" summary="add environment information for easy deployment">
+      <created>1579475225294</created>
+      <option name="number" value="00030" />
+      <option name="presentableId" value="LOCAL-00030" />
+      <option name="project" value="LOCAL" />
+      <updated>1579475225294</updated>
+    </task>
+    <option name="localTasksCounter" value="31" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="80605000" />
+    <option name="totallyTimeSpent" value="80896000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1680" height="1050" extended-state="0" />
@@ -520,7 +525,6 @@
     <option name="version" value="1" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="- starting to move CSV file to models so everything is in same SQLlite db" />
     <MESSAGE value="Initial making of form for publishing new funding resource" />
     <MESSAGE value="Able to push data to resources if logged in..." />
     <MESSAGE value="Able to edit and manage resources that belong to a specific user" />
@@ -545,7 +549,8 @@
     <MESSAGE value="some fixes" />
     <MESSAGE value="Admin dashboard" />
     <MESSAGE value="edits to base, dashboard template and routes" />
-    <option name="LAST_COMMIT_MESSAGE" value="edits to base, dashboard template and routes" />
+    <MESSAGE value="add environment information for easy deployment" />
+    <option name="LAST_COMMIT_MESSAGE" value="add environment information for easy deployment" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/flask_test$app.coverage" NAME="app Coverage Results" MODIFIED="1579384842604" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
@@ -739,17 +744,17 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/captain-definition">
+    <entry file="file://$PROJECT_DIR$/requirements.txt">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="165">
-          <caret line="11" column="1" lean-forward="true" selection-start-line="11" selection-start-column="1" selection-end-line="11" selection-end-column="1" />
+        <state relative-caret-position="1096">
+          <caret line="90" column="15" lean-forward="true" selection-start-line="90" selection-start-column="15" selection-end-line="90" selection-end-column="15" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/requirements.txt">
+    <entry file="file://$PROJECT_DIR$/captain-definition">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="218">
-          <caret line="90" column="15" lean-forward="true" selection-start-line="90" selection-start-column="15" selection-end-line="90" selection-end-column="15" />
+        <state relative-caret-position="45">
+          <caret line="3" column="35" selection-start-line="3" selection-start-column="35" selection-end-line="3" selection-end-column="35" />
         </state>
       </provider>
     </entry>
