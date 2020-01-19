@@ -8,7 +8,7 @@
 		"COPY ./requirements.txt /usr/src/app/",
 		"RUN ls -a",
 		"RUN pip install --no-cache-dir -U pip",
-        "RUN pip install --no-cache-dir -r /requirements.txt",
+        "RUN pip install --no-cache-dir -r requirements.txt",
 		"CMD [ \"python3\", \"__init__.py\" ]",
 		"EXPOSE 5000 27017"
 	]
