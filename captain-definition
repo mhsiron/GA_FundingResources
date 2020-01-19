@@ -7,8 +7,8 @@
 		"COPY ./app /usr/src/app/",
 		"COPY ./requirements.txt /usr/src/app/",
 		"RUN ls -a",
-		"RUN apk add --no-cache --virtual .build-deps gcc musl-dev && pip install cython && apk del .build-deps",
-		"RUN pip3 install --upgrade pip --ignore-installed -r requirements.txt",
+		"RUN pip install --no-cache-dir -U pip",
+        "RUN pip install --no-cache-dir -r /requirements.txt",
 		"CMD [ \"python3\", \"__init__.py\" ]",
 		"EXPOSE 5000 27017"
 	]
