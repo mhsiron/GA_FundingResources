@@ -2,7 +2,6 @@ cython
 numpy
 pandas
 Click==7.0
-flask
 Flask==1.1.1
 Flask-Bootstrap==3.3.7.1
 Flask-Login==0.4.1
