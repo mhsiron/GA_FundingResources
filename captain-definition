@@ -4,7 +4,7 @@
 		"FROM continuumio/miniconda3",
 		"RUN mkdir -p /usr/src/app",
 		"RUN mkdir -p /usr/src/app/app",
-		"COPY ./app /usr/src/app/",
+		"ADD ./app /usr/src/app/app",
 		"COPY ./requirements.txt /usr/src/app/",
 		"COPY ./config.py /usr/src/app/",
 		"COPY ./data /usr/src/app/",
