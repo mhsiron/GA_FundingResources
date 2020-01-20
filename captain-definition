@@ -1,8 +1,8 @@
 {
 	"schemaVersion" :2 ,
 	"dockerfileLines" :[
-		"FROM ubuntu:16.04",
-		"RUN apt-get update -y && apt-get install -y python-pip python-dev",
+		"FROM tiangolo/uwsgi-nginx-flask:python3.6-alpine3.7",
+		"RUN apk --update add bash nano",
 		"RUN mkdir -p /usr/src/app",
         "WORKDIR /usr/src/app",
 		"COPY ./app /usr/src/app/",
