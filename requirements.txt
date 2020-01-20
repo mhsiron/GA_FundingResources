@@ -1,5 +1,4 @@
 Click==7.0
-Cython
 Flask==1.1.1
 Flask-Bootstrap==3.3.7.1
 Flask-Login==0.4.1
@@ -20,8 +19,6 @@ itsdangerous==1.1.0
 livereload==2.6.1
 mkdocs==1.0.4
 mkdocs-material==4.3.1
-numpy==1.17.4
-pandas==0.25.3
 pip==19.3.1
 pymdown-extensions==6.0
 pyperclip==1.7.0
