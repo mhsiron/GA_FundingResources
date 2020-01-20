@@ -17,7 +17,6 @@
         "RUN [\"conda\", \"create\", \"-n\", \"myenv\", \"python=3.7\"]",
         "RUN /bin/bash -c \"source activate myenv\"",
         "RUN pip install --no-cache-dir --ignore-installed -r requirements.txt",
-		"CMD [ \"python3\", \"Main.py\" ]",
-		"EXPOSE 5000 27017"
+		"CMD [ \"python3\", \"Main.py\" ]"
 	]
 }
