@@ -6,6 +6,7 @@
         "WORKDIR /usr/src/app",
 		"COPY ./app /usr/src/app/",
 		"COPY ./requirements.txt /usr/src/app/",
+		"COPY ./config.py /usr/src/app/",
 		"RUN ls -a",
         "RUN apt-get update && apt-get -y install curl libpq-dev python-dev postgresql-client && apt-get -y install python build-essential python-pip && apt-get -y install libblas-dev liblapack-dev gfortran && rm -rf /var/lib/apt/lists/*",
         "RUN mkdir -p /opt/pandas/build/",
