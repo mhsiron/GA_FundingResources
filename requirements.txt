@@ -13,7 +13,6 @@ MarkupSafe==1.1.1
 SQLAlchemy==1.3.12
 WTForms==2.2.1
 Werkzeug==0.16.0
-array-to-latex==0.73
 certifi==2019.11.28
 clipboard==0.0.4
 datefinder==0.7.0
