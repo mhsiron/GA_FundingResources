@@ -25,8 +25,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/captain-definition">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="90">
-              <caret line="6" column="36" selection-start-line="6" selection-start-column="36" selection-end-line="6" selection-end-column="36" />
+            <state relative-caret-position="75">
+              <caret line="5" column="37" selection-start-line="5" selection-start-column="37" selection-end-line="5" selection-end-column="37" />
             </state>
           </provider>
         </entry>
@@ -310,21 +310,7 @@
       <option name="presentableId" value="Default" />
       <updated>1578607013112</updated>
       <workItem from="1578607021946" duration="5426000" />
-      <workItem from="1578954953975" duration="82635000" />
-    </task>
-    <task id="LOCAL-00025" summary="edit resource from resource page, few fixes">
-      <created>1579382720242</created>
-      <option name="number" value="00025" />
-      <option name="presentableId" value="LOCAL-00025" />
-      <option name="project" value="LOCAL" />
-      <updated>1579382720242</updated>
-    </task>
-    <task id="LOCAL-00026" summary="some fixes">
-      <created>1579383186373</created>
-      <option name="number" value="00026" />
-      <option name="presentableId" value="LOCAL-00026" />
-      <option name="project" value="LOCAL" />
-      <updated>1579383186373</updated>
+      <workItem from="1578954953975" duration="83068000" />
     </task>
     <task id="LOCAL-00027" summary="Admin dashboard">
       <created>1579385341369</created>
@@ -655,11 +641,25 @@
       <option name="project" value="LOCAL" />
       <updated>1579484683411</updated>
     </task>
-    <option name="localTasksCounter" value="74" />
+    <task id="LOCAL-00074" summary="folder update docker">
+      <created>1579484832934</created>
+      <option name="number" value="00074" />
+      <option name="presentableId" value="LOCAL-00074" />
+      <option name="project" value="LOCAL" />
+      <updated>1579484832934</updated>
+    </task>
+    <task id="LOCAL-00075" summary="folder update docker">
+      <created>1579485430517</created>
+      <option name="number" value="00075" />
+      <option name="presentableId" value="LOCAL-00075" />
+      <option name="project" value="LOCAL" />
+      <updated>1579485430517</updated>
+    </task>
+    <option name="localTasksCounter" value="76" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="88061000" />
+    <option name="totallyTimeSpent" value="88494000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1680" height="1050" extended-state="0" />
@@ -921,8 +921,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/captain-definition">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="90">
-          <caret line="6" column="36" selection-start-line="6" selection-start-column="36" selection-end-line="6" selection-end-column="36" />
+        <state relative-caret-position="75">
+          <caret line="5" column="37" selection-start-line="5" selection-start-column="37" selection-end-line="5" selection-end-column="37" />
         </state>
       </provider>
     </entry>
