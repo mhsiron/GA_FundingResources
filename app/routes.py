@@ -1,4 +1,3 @@
-
 from flask import render_template, flash, redirect, url_for, request, session
 from flask_login import login_user, logout_user, current_user, login_required
 from app import app, db
@@ -14,7 +13,7 @@ import os
 
 
 ### Load init data:
-df = pd.read_csv("data/funding_opt.csv", names = ['name', 'source', 'URL', 'deadline', 'description',
+df = pd.read_csv("../data/funding_opt.csv", names = ['name', 'source', 'URL', 'deadline', 'description',
        'criteria', 'amount', 'restrictions', 'timeline', 'point_of_contact',
        'ga_contact', 'keywords','main_cat'])
 df = df.drop(df.index[0])

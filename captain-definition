@@ -2,9 +2,9 @@
 	"schemaVersion" :2 ,
 	"dockerfileLines" :[
 		"FROM continuumio/miniconda3",
-		"RUN mkdir -p /usr/src/app",
+		"RUN mkdir -p /usr/src/",
         "WORKDIR /usr/src/",
-		"COPY ./app /usr/src/app/",
+		"COPY ./app /usr/src/",
 		"COPY ./requirements.txt /usr/src/",
 		"COPY ./config.py /usr/src/",
 		"COPY ./data /usr/src/",
