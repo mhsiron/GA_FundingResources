@@ -28,8 +28,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/captain-definition">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="135">
-              <caret line="9" column="20" selection-start-line="9" selection-start-column="20" selection-end-line="9" selection-end-column="20" />
+            <state relative-caret-position="195">
+              <caret line="13" column="44" selection-start-line="13" selection-start-column="44" selection-end-line="13" selection-end-column="44" />
             </state>
           </provider>
         </entry>
@@ -290,21 +290,7 @@
       <option name="presentableId" value="Default" />
       <updated>1578607013112</updated>
       <workItem from="1578607021946" duration="5426000" />
-      <workItem from="1578954953975" duration="78811000" />
-    </task>
-    <task id="LOCAL-00009" summary="404, 500 error">
-      <created>1579202475698</created>
-      <option name="number" value="00009" />
-      <option name="presentableId" value="LOCAL-00009" />
-      <option name="project" value="LOCAL" />
-      <updated>1579202475698</updated>
-    </task>
-    <task id="LOCAL-00010" summary="Fix to filter and to editing main funding category">
-      <created>1579204206139</created>
-      <option name="number" value="00010" />
-      <option name="presentableId" value="LOCAL-00010" />
-      <option name="project" value="LOCAL" />
-      <updated>1579204206139</updated>
+      <workItem from="1578954953975" duration="79254000" />
     </task>
     <task id="LOCAL-00011" summary="Fix filter fund function for multiple filters and fix problem with bootstrap on all pages">
       <created>1579213494680</created>
@@ -635,11 +621,25 @@
       <option name="project" value="LOCAL" />
       <updated>1579479101763</updated>
     </task>
-    <option name="localTasksCounter" value="58" />
+    <task id="LOCAL-00058" summary="fix to docker">
+      <created>1579479241698</created>
+      <option name="number" value="00058" />
+      <option name="presentableId" value="LOCAL-00058" />
+      <option name="project" value="LOCAL" />
+      <updated>1579479241698</updated>
+    </task>
+    <task id="LOCAL-00059" summary="fix to docker">
+      <created>1579479356457</created>
+      <option name="number" value="00059" />
+      <option name="presentableId" value="LOCAL-00059" />
+      <option name="project" value="LOCAL" />
+      <updated>1579479356457</updated>
+    </task>
+    <option name="localTasksCounter" value="60" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="84237000" />
+    <option name="totallyTimeSpent" value="84680000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1680" height="1050" extended-state="0" />
@@ -900,8 +900,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/captain-definition">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="135">
-          <caret line="9" column="20" selection-start-line="9" selection-start-column="20" selection-end-line="9" selection-end-column="20" />
+        <state relative-caret-position="195">
+          <caret line="13" column="44" selection-start-line="13" selection-start-column="44" selection-end-line="13" selection-end-column="44" />
         </state>
       </provider>
     </entry>
