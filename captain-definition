@@ -2,7 +2,6 @@
 	"schemaVersion" :2 ,
 	"dockerfileLines" :[
 		"FROM debian:latest",
-		"RUN apk --update add bash nano",
 		"RUN mkdir -p /usr/src/app",
         "WORKDIR /usr/src/app",
 		"COPY ./app /usr/src/app/",
